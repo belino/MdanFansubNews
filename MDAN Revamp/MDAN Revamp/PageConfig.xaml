@@ -1,0 +1,26 @@
+﻿<Page
+    x:Class="MDAN_Revamp.PageConfig"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MDAN_Revamp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock x:Name="Title" Text="Configurações" FontWeight="Bold" TextAlignment="Center" FontSize="24"></TextBlock>
+                
+            </StackPanel>
+            <StackPanel  Width="250" Grid.Row="1">
+            <ToggleSwitch x:Name="Switcher" OffContent="Desl." OnContent="Lig." IsOn="True" Header="Notificações" Background="Black" Margin="10" Toggled="Switch_Toggled"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

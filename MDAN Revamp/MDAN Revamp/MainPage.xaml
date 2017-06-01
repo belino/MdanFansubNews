@@ -1,0 +1,130 @@
+﻿<Page
+    x:Class="MDAN_Revamp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MDAN_Revamp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#FF3482FA">
+
+           
+
+            <Image Source="/Images/mdanlogo1.png" Height="60"  HorizontalAlignment="Right" />
+            <TextBlock Text="MDAN Fansub" FontSize="20" Foreground="White" FontWeight="Bold" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
+
+        </Grid>
+        <Grid Grid.Row="1">
+        <ScrollViewer>
+
+            <StackPanel Width="Auto" Height="Auto" ScrollViewer.VerticalScrollMode="Enabled">
+
+                <StackPanel>
+                    <Grid Grid.Row="0" Tapped="Grid_Tapped_1" MaxHeight="490" >
+                        <Image x:Name="newImage" Source="/Images/error.jpg" Visibility="Collapsed"></Image>
+                        <Border Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                            <TextBlock x:Name="newRelease" Foreground="White" FontSize="32" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Row="1" Margin="1" HorizontalAlignment="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                            <ColumnDefinition Width="*" ></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Margin="3" MaxHeight="240" Tapped="Grid_Tapped_2">
+                            <Image x:Name="newImage1" Source="/Images/error.jpg" Visibility="Collapsed"></Image>
+                            <Border Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <TextBlock x:Name="newRelease1" Foreground="White" FontSize="15" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                            </Border>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="3" MaxHeight="240" Tapped="Grid_Tapped_3">
+                            <Image x:Name="newImage2" Source="/Images/error.jpg" Visibility="Collapsed"></Image>
+                            <Border Background="Transparent" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <TextBlock x:Name="newRelease2" Foreground="White" FontSize="15" FontWeight="Bold" TextWrapping="Wrap"></TextBlock>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Row="2">
+                    <ListView Name="listRss" MaxWidth="840">
+                        <ListView.ItemTemplate >
+                            <DataTemplate>
+                                <Grid Tapped="Grid_Tapped" Margin="0,10,0,10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+
+
+
+                                        <Grid Grid.Row="0" >
+                                            <TextBlock x:Name="title" Text="{Binding Title1}" FontSize="20" FontWeight="Bold" TextWrapping="WrapWholeWords" Margin="10,0,0,5" HorizontalAlignment="Left"></TextBlock>
+                                        </Grid>
+
+                                    </Grid>
+
+                                    <Grid Grid.Row="1" Margin="3,3,3,3" >
+                                        <Grid>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0" >
+                                                <StackPanel>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid Grid.Column="0" VerticalAlignment="Top" >
+                                                            <Image x:Name="image" Source="{Binding Image1}" MaxHeight="150" ></Image>
+                                                        </Grid>
+                                                        <Grid Grid.Column="1" Margin="5">
+                                                            <TextBlock x:Name="desc" Text="{Binding Description1}" TextWrapping="Wrap" TextAlignment="Justify"  ></TextBlock>
+                                                        </Grid>
+                                                    </Grid>
+                                                </StackPanel>
+
+                                            </Grid>
+                                            <Grid Grid.Row="1" >
+                                                    <TextBlock Margin="3" x:Name="pubdate" Text="{Binding pubDate1}" TextWrapping="Wrap" FontSize="10"  ></TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+
+
+                                </Grid>
+
+
+
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        </Grid>
+        
+    </Grid>
+    
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.SecondaryCommands>
+                <!-- These commands appear on the right -->
+                <AppBarButton x:Name="Settings" Label="Config." Click="SettingsPage_Tapped"   />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>
