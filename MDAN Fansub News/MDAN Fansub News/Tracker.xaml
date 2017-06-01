@@ -1,0 +1,108 @@
+﻿<Page
+    x:Class="MDAN_App_Base.Tracker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MDAN_App_Base"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid x:Name="userDataRow" Grid.Row="0" >
+                <Grid>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                        <RowDefinition ></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" >
+                            <TextBlock Name="erroText" Foreground="Red" TextAlignment="Center" Visibility="Collapsed" >
+                            <Run Text="Não é possível conectar."></Run>
+                            <LineBreak></LineBreak>
+                            <Run Text="Tente novamente mais tarde."></Run>
+                            </TextBlock>
+                        </Grid>
+                        <Grid Grid.Column="1" Grid.Row="1">
+                            <StackPanel Margin="5">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+                        <!--<Grid Grid.Row="0" HorizontalAlignment="Center" >
+                            <Image x:Name="userAvatar" Height="40" Tapped="Grid_Tapped_1"></Image>
+                        </Grid>
+                        <Grid  Grid.Row="1" HorizontalAlignment="Right" Tapped="Grid_Tapped_1">
+                            <TextBlock x:Name="userNameBlock" Text=" " TextAlignment="Right" ></TextBlock>
+                        </Grid>-->
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                            
+                    </Grid>
+                   
+                </Grid>
+            </Grid>
+            <Grid x:Name="trackerContent" Grid.Row="1" Margin="3">
+                <ListView Name="listRss" Margin="5">
+                    <ListView.ItemTemplate >
+                        <DataTemplate>
+                            <Grid Tapped="Grid_Tapped" Margin="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0" VerticalAlignment="Center" >
+                                                <Image x:Name="image" Height="45" Source="{Binding Image1}" ></Image>
+                                            </Grid>
+                                            <Grid Grid.Column="1" VerticalAlignment="Center" >
+                                                <TextBlock x:Name="title" Text="{Binding Title1}" FontSize="18" FontWeight="Bold" TextWrapping="WrapWholeWords"></TextBlock>
+                                            </Grid>
+                                        </Grid>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid Grid.Row="0" >
+                                        <TextBlock x:Name="desc" Text="{Binding Description1}" TextWrapping="Wrap" TextAlignment="Justify" TextTrimming="WordEllipsis" ></TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="1" >
+                                        <TextBlock x:Name="pubdate" Text="{Binding pubDate1}" TextWrapping="Wrap" FontSize="10" ></TextBlock>
+                                    </Grid>
+                                </Grid>
+
+                                
+                                    
+                                    
+                                   
+                               
+
+                               
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

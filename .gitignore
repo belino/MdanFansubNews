@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MDAN Fansub News/MDAN App Base/bin
+/MDAN Fansub News/MDAN App Base/obj
+/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.19.0_Test
+/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.20.0_Test
+/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test/Add-AppDevPackage.resources
+/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test/Dependencies
+/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test
+/MDAN Fansub News/MDAN Fansub News/AppPackages
+/MDAN Fansub News/MDAN Fansub News/bin
+/MDAN Fansub News/MDAN Fansub News/BundleArtifacts
+/MDAN Fansub News/MDAN Fansub News/obj
+/MDAN Fansub News/Mdan.Background/bin
+/MDAN Fansub News/Mdan.Background/obj
+/MDAN Fansub News/MDANBack/bin
+/MDAN Fansub News/MDANBack/obj
+/MDAN Fansub News/packages/Newtonsoft.Json.10.0.2
