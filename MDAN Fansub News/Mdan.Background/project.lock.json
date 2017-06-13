@@ -26326,20 +26326,20 @@
     "UAP,Version=v10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\rhobertmitchell\\.nuget\\packages\\": {}
+    "C:\\Users\\emp_b\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
-      "projectUniqueName": "C:\\Users\\rhobertmitchell\\Documents\\Desktop\\Personal\\MDAN Fansub News\\Mdan.Background\\Mdan.Background.csproj",
+      "projectUniqueName": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\Mdan.Background\\Mdan.Background.csproj",
       "projectName": "Mdan.Background",
-      "projectPath": "C:\\Users\\rhobertmitchell\\Documents\\Desktop\\Personal\\MDAN Fansub News\\Mdan.Background\\Mdan.Background.csproj",
-      "projectJsonPath": "C:\\Users\\rhobertmitchell\\Documents\\Desktop\\Personal\\MDAN Fansub News\\Mdan.Background\\project.json",
+      "projectPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\Mdan.Background\\Mdan.Background.csproj",
+      "projectJsonPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\Mdan.Background\\project.json",
       "projectStyle": "ProjectJson",
       "frameworks": {
         "uap10.0": {
           "projectReferences": {
-            "C:\\Users\\rhobertmitchell\\Documents\\Desktop\\Personal\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj": {
-              "projectPath": "C:\\Users\\rhobertmitchell\\Documents\\Desktop\\Personal\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj"
+            "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj": {
+              "projectPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj"
             }
           }
         }

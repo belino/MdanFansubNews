@@ -41,24 +41,18 @@ namespace MDAN_App_Base
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
-                if (Frame.CanGoBack)
-                {
-                    Frame.GoBack();
-                    a.Handled = true;
-                }
+                if (!Frame.CanGoBack) return;
+                Frame.GoBack();
+                a.Handled = true;
             };
 
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
             {
                 Windows.Phone.UI.Input.HardwareButtons.BackPressed += (s, a) =>
                 {
-                    Debug.WriteLine("BackPressed");
-                    if (Frame.CanGoBack)
-                    {
-                        Frame.GoBack();
-                        a.Handled = true;
-                    }
+                    if (!Frame.CanGoBack) return;
+                    Frame.GoBack();
+                    a.Handled = true;
                 };
             }
         }
@@ -114,7 +108,6 @@ namespace MDAN_App_Base
                 noticia.Image1 = GetImagesInHTMLString(x.Value).Count > 0 ? GetImagesInHTMLString(x.Value)[0] : @"http://cdn.meme.am/instances/250x250/62004543.jpg";
                 mainList.Add(noticia);
             }
-            Debug.WriteLine(mainList.Count);
             var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
                           select new RSSItem
                           {

@@ -41,7 +41,7 @@
                     <Run Text="Caso não escolha nenhuma, todas as categorias serão mostradas."></Run>
                 </TextBlock>
             </Grid>
-            <Grid x:Name="selectCheck" Grid.Row="2" Margin="20" HorizontalAlignment="Center">
+            <Grid  Grid.Row="2" Margin="20" HorizontalAlignment="Center">
                 <StackPanel>
                 <CheckBox x:Name="animeCheck" Content="Animes (Episódios, completos, ovas)"></CheckBox>
                 <CheckBox x:Name="filmeCheck" Content="Filmes"></CheckBox>

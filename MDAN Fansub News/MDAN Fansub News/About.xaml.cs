@@ -36,7 +36,6 @@ namespace MDAN_App_Base
             versionText.Text += x;
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
                 if (Frame.CanGoBack)
                 {
                     Frame.GoBack();

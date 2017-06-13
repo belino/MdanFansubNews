@@ -23,7 +23,7 @@ namespace MDAN_App_Base
             InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
+                
                 if (!Frame.CanGoBack) return;
                 Frame.GoBack();
                 a.Handled = true;
@@ -32,17 +32,8 @@ namespace MDAN_App_Base
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            SetCheckList();
             base.OnNavigatedTo(e);
-            if (_user.Username != null)
-            {
-                userNameBlock.Text = _user.Username;
-                userAvatar.Source = new BitmapImage(new Uri(_user.Avatar));
-            }
-            else
-            {
-                Frame.Navigate(typeof(Login));
-            }
-            
         }
 
         private async void Button_Tapped(object sender, TappedRoutedEventArgs e)
@@ -54,6 +45,25 @@ namespace MDAN_App_Base
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
                            () => Frame.Navigate(typeof(Tracker)));
         }
+
+        private void SetCheckList()
+        {
+            foreach (var category in _user.Cats)
+            {
+                if (category == 1 || category == 2 || category == 5)
+                    animeCheck.IsChecked = true;
+                if (category == 3)
+                    filmeCheck.IsChecked = true;
+                if (category == 4)
+                    ostCheck.IsChecked = true;
+                if (category == 7)
+                    mangaCheck.IsChecked = true;
+                if (category == 6)
+                    liveCheck.IsChecked = true;
+            }
+            
+        }
+
 
         private void CheckList()
         {
@@ -79,5 +89,7 @@ namespace MDAN_App_Base
                 _listcat.Add(6);
             }
         }
+
+
     }
 }

@@ -11,7 +11,6 @@ using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -19,34 +18,26 @@ using Windows.UI.Xaml.Navigation;
 namespace MDAN_App_Base
 {
 
-    public sealed partial class Tracker 
+    public sealed partial class Tracker
     {
         private readonly User _user = User.Instance;
         public List<RSSItem> MainList = new List<RSSItem>();
-        
+
         public Tracker()
         {
             InitializeComponent();
-            //this will be removed after data is encrypted
-            _user.Status = true;
-            _user.Cats.Add(1);
-            _user.Cats.Add(2);
-            _user.Cats.Add(3);
-            _user.Cats.Add(4);
-            _user.Cats.Add(5);
-            _user.Cats.Add(6);
-            _user.Cats.Add(7);
-            _user.TrackerUriGenerator();
 
-            if (_user.Status) {
-                if(_user.TrackerUri != null){
-                    if (_user.TrackerUri.Contains("http"))
-                        RssRetriever();
-                }
+
+
+            if (_user.TrackerUri != null)
+            {
+                if (_user.TrackerUri.Contains("http"))
+                    RssRetriever();
+
             }
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
+               
                 if (Frame.CanGoBack)
                 {
                     Frame.GoBack();
@@ -56,13 +47,13 @@ namespace MDAN_App_Base
 
         }
 
-        
+
         private async void RssRetriever()
         {
 
 
             HttpWebRequest wc = (HttpWebRequest)WebRequest.Create(_user.TrackerUri);
-            
+
             wc.ContentType = "text/xml;";
             wc.Accept = "text/xml";
             wc.Method = "GET";
@@ -74,28 +65,26 @@ namespace MDAN_App_Base
                 {
                     var reader = new StreamReader(webResponse.GetResponseStream());
                     var rssData = reader.ReadToEnd();
-                    Debug.WriteLine(rssData);
-                    Debug.WriteLine("");
-                    //Debug.WriteLine(webResponse());
+                  
                     TrackerReader(rssData);
                 }
-                
+
             }
-           
-            catch(Exception e)
+
+            catch (Exception e)
             {
                 var message = string.Format("Ocorreu um erro durante o acesso ao tracker. Tente mais tarde. Você pode reportar o erro ao Detona XD. Erro: {0}", e.Message);
-                var dialog = new MessageDialog(message) {Title = "Erro"};
+                var dialog = new MessageDialog(message) { Title = "Erro" };
                 dialog.Commands.Add(new UICommand { Label = "OK", Id = 0 });
                 await dialog.ShowAsync();
                 error = true;
             }
             finally
             {
-                if(error)
-                Frame.Navigate(typeof(Site));
+                if (error)
+                    Frame.Navigate(typeof(Site));
             }
-       }
+        }
 
         public string GetString(string uri)
         {
@@ -109,57 +98,42 @@ namespace MDAN_App_Base
 
         private void TrackerReader(String rssContent)
         {
-          
-                if (rssContent.Length != 0) { 
+
+            if (rssContent.Length != 0)
+            {
 
                 var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
                               select new RSSItem
                               {
-                                  Title1 = rss.Element("title").Value.TrimStart(),
+                                  Title1 = rss.Element("title")?.Value.TrimStart(),
                                   //pubDate1 = rss.Element("decription").Value.Substring(0, 22),
-                                  Description1 = stringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
+                                  Description1 = stringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description")?.Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
                                   //Description1 = Regex.Replace(Description1, "([[+a-zA-Z/(?:d*\\.)?\\d+]+])", ""),
-                                  Link1 = rss.Element("link").Value,
-                                  Image1 = GetImagesInDesc(rss.Element("description").ToString())
+                                  Link1 = rss.Element("link")?.Value,
+                                  Image1 = GetImagesInDesc(rss.Element("description")?.ToString())
                               };
 
-                    var rssItems = rssData as IList<RSSItem> ?? rssData.ToList();
-                    MainList = rssItems.ToList();
+                var rssItems = rssData as IList<RSSItem> ?? rssData.ToList();
+                MainList = rssItems.ToList();
                 listRss.ItemsSource = rssItems.ToList();
-                }
+            }
             else
             {
                 erroText.Visibility = Visibility.Visible;
             }
-       }
+        }
+
+
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
            
-        
-
-        //protected override async void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    if ((!_user.Status)||(_user.Username == null))
-        //    {
-        //       await  Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-        //                    () => Frame.Navigate(typeof(Login)));
-        //    }
-        //    else
-        //    {
-        //        if ((_user.TrackerUri == null)||(_user.TrackerUri.Equals("")))
-        //        {
-        //           await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-        //                    () => Frame.Navigate(typeof(CategoriasRss)));
-        //        }
-        //        else
-        //        {
-
-        //            //userNameBlock.Text = _user.Username + " (Logout)";
-        //            //userAvatar.Source = new BitmapImage(new Uri(_user.Avatar));
-        //            //trackerReader();
-        //        }
-        //    }
-            
-
-        //}
+                if ((_user.TrackerUri == null) || (_user.TrackerUri.Equals("")))
+                {
+                    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                             () => Frame.Navigate(typeof(CategoriasRss)));
+                }
+        }
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -173,22 +147,22 @@ namespace MDAN_App_Base
             //int index = s.LastIndexOf("[img]");
             //if (index > 0)
             //    s = s.Substring(0, index);
-            
+
             var k = WebUtility.HtmlDecode(Regex.Replace(s, "(http)(.*?)(?=\\[\\/IMG)|(http)(.*?)(?=\\[\\/img)|(\\[i\\])|(\\[IMG+\\]|\\[/IMG])|(\\[img+\\]|\\[/img])|(\\[size=(?:\\d*\\.)?\\d+|\\[/size)\\]|(\\[b+\\]|\\[/b])|((https)(.*?)(?=\\]))|(\\[.+?\\])", ""));
             k = Regex.Replace(k, "\\[.+?\\]", "");
             if (k.Length > 150)
             {
-                k = k.Remove(k.Length - 5, 5 )+ "[...]";
+                k = k.Remove(k.Length - 5, 5) + "[...]";
             }
             //string m = Regex.Replace(k, "(http)(.*?)(?=\\[\\/IMG)|(http)(.*?)(?=\\[\\/img)", "");
-            //Debug.WriteLine(m);
+            
             return k.Trim();
         }
 
         private async void Grid_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-           await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
-                            () => Frame.Navigate(typeof(UserPage)));
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal,
+                             () => Frame.Navigate(typeof(UserPage)));
         }
 
         private string GetImagesInDesc(string desc)
@@ -226,6 +200,11 @@ namespace MDAN_App_Base
             }
 
             return image;
+        }
+
+        private void SettingButton(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CategoriasRss));
         }
     }
 }
