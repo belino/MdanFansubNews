@@ -36,16 +36,17 @@ namespace Mdan.Background
                 var rssData = from rss in XElement.Parse(res).Descendants("item")
                                   select new RSSItem
                                   {
-                                      Title1 = rss.Element("title").Value.TrimStart()
+                                      Title1 = rss.Element("title")?.Value.TrimStart()
                                   };
-                var lastImage = GetImagesInHTMLString(res).FirstOrDefault();
+                var firstImage = GetImagesInHTMLString(res).FirstOrDefault();
                 var rssItems = rssData as IList<RSSItem> ?? rssData.ToList();
-                rssItems.ToList().Last().Image1 = lastImage;
+                rssItems.ToList().FirstOrDefault().Image1 = firstImage;
                     var lista = rssItems.ToList();
+
                 
-
-
-                UpdateStatusAndTime(lista.FirstOrDefault());
+                var first = lista.FirstOrDefault();
+                first.Image1 = firstImage;
+                UpdateStatusAndTime(first);
             }
             catch (Exception ex)
             {
@@ -103,36 +104,24 @@ namespace Mdan.Background
             Debug.WriteLine("Background " + sender.Task.Name + " Cancel Requested...");
         }
 
-
-        private static void UpdateStatusAndTime(RSSItem item)
+        private static void RefreshTile(string title)
         {
-            if (!ApplicationData.Current.LocalSettings.Values.ContainsKey("LastUp")) return;
-            if (ApplicationData.Current.LocalSettings.Values["LastUp"].Equals(item.Title1)) return;
-            ApplicationData.Current.LocalSettings.Values["LastUp"] = item.Title1;
-            var counter = int.Parse(ApplicationData.Current.LocalSettings.Values["Counter"].ToString()) + 1;
             var bindingContent = new TileBindingContentAdaptive()
             {
                 Children =
                 {
                     new AdaptiveText
                     {
-                        Text = "Novo lançamento!",
+                        Text = "Último lançamento",
                         HintStyle = AdaptiveTextStyle.Body
                     },
 
                     new AdaptiveText
                     {
-                        Text = item.Title1,
+                        Text = title,
                         HintWrap = true,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
-                    new AdaptiveImage
-                    {
-                        Source = item.Image1,
-                        HintCrop = AdaptiveImageCrop.Circle
-                    },
-                   
-
                 }
             };
             var binding = new TileBinding
@@ -141,7 +130,8 @@ namespace Mdan.Background
 
                 DisplayName = "MDAN Fansub",
 
-                Content = bindingContent
+                Content = bindingContent,
+
             };
             var content = new TileContent
             {
@@ -157,40 +147,30 @@ namespace Mdan.Background
             var notification = new TileNotification(doc);
             var updater = TileUpdateManager.CreateTileUpdaterForApplication();
             updater.Update(notification);
+        }
 
 
-            var visual = new ToastVisual
-            {
-                BindingGeneric = new ToastBindingGeneric
-                {
-                  Children  =
-                  {
-                      new AdaptiveText
-                      {
-                            Text = "MDAN - Novo Lançamento"
-                      },
-                      new AdaptiveText
-                      {
-                        Text = item.Title1
-                      },
-                  },
-                    AppLogoOverride = new ToastGenericAppLogo
-                    {
-                        Source = item.Image1,
-                        HintCrop = ToastGenericAppLogoCrop.Circle
-                    }
-                }
-            };
-            var toastContent = new ToastContent()
-            {
-                Visual = visual
-            };
-            var tileNotification = new TileNotification(content.GetXml());
-            TileUpdateManager.CreateTileUpdaterForApplication().Update(tileNotification);
-            var toast = new ToastNotification(toastContent.GetXml());
-            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        private static void CreateNewEntranceTile(RSSItem newsTitle)
+        {
+            var counter = int.Parse(ApplicationData.Current.LocalSettings.Values["Counter"].ToString()) + 1;
+            TileNotificationCreator.CreateNewTileNotification(newsTitle);
+            ToastNotificationCreator.CreateNewToastNotification(newsTitle);
             SetBadgeNumber(counter);
-            
+        }
+
+        private static void UpdateStatusAndTime(RSSItem item)
+        {
+            if (!ApplicationData.Current.LocalSettings.Values.ContainsKey("LastUp")) return;
+            if (ApplicationData.Current.LocalSettings.Values["LastUp"].Equals(item.Title1))
+            {
+                RefreshTile(item.Title1);
+            }
+            else
+            {
+                
+                CreateNewEntranceTile(item);
+                ApplicationData.Current.LocalSettings.Values["LastUp"] = item.Title1;
+            }
         }
 
         private static void SetBadgeNumber(int num)

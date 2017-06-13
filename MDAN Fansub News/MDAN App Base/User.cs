@@ -26,13 +26,7 @@ namespace MDAN_App_Base
 
         public string Avatar { get; set; }
 
-        private string _userId;
-
-        public string Id
-        {
-            get { return _userId; }
-            set { _userId = value; }
-        }
+        public string Id { get; set; }
 
         public bool Status { get; set; }
 
@@ -46,12 +40,25 @@ namespace MDAN_App_Base
             return Cats;
         }
 
+        public void CatsRetriever()
+        {
+            if (TrackerUri.Contains("="))
+            {
+                var result = TrackerUri.Substring(TrackerUri.IndexOf("=", StringComparison.Ordinal) + 1);
+                var catsStringList = result.Split(',');
+                foreach (var cat in catsStringList)
+                {
+                    Cats.Add(int.Parse(cat));
+                }
+            }
+        }
+
         public void TrackerUriGenerator()
         {
             if (Cats.Count != 0)
             {
                 var i = 0;
-                //trackerRssUri = "http://bt.mdan.org/rss_app.php?cats=";
+                
                 var uribuilder = new StringBuilder();
                 uribuilder.Append("http://bt.mdan.org/rss_app.php?cats=");
                 while (i <= Cats.Count - 1)
@@ -88,9 +95,9 @@ namespace MDAN_App_Base
             // We assume that the arrays paramName and paramVal are
             // of equal length:
             var paramz = new StringBuilder();
-            paramz.Append("username=belino");
+            paramz.Append("username=");
             paramz.Append(username);
-            paramz.Append("&password=emscla");
+            paramz.Append("&password=");
             paramz.Append(password);
 
             using (var writer = new StreamWriter(await req.GetRequestStreamAsync()))
@@ -118,7 +125,6 @@ namespace MDAN_App_Base
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine(e.Message);
                     return false;
                 }
 

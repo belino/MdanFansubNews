@@ -29,12 +29,9 @@ namespace MDAN_App_Base
             this.InitializeComponent();
             Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
-                if (Frame.CanGoBack)
-                {
-                    Frame.GoBack();
-                    a.Handled = true;
-                }
+                if (!Frame.CanGoBack) return;
+                Frame.GoBack();
+                a.Handled = true;
             };
         }
 

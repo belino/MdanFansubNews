@@ -26,18 +26,11 @@ namespace MDAN_App_Base
             InitializeComponent();
             ApplicationData.Current.LocalSettings.Values["Notifications"] = _user.Notifications;
             ApplicationData.Current.LocalSettings.Values["Counter"] = 0;
+            _user.TrackerUri = ApplicationData.Current.LocalSettings.Values["Tracker"].ToString();
+            _user.CatsRetriever();
             var updater = TileUpdateManager.CreateTileUpdaterForApplication();
             updater.Clear();
-            const string back = "Windows.Phone.UI.Input.HardwareButtons";
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent(back))
-            {
-                menu.DisplayMode = SplitViewDisplayMode.Overlay;
-                NotiRequesterPhone();
-                //Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            }
             
-                    
-                    
         }
 
         private static async void NotiRequesterPhone()
@@ -66,12 +59,12 @@ namespace MDAN_App_Base
                     }
                 }
 
-                BackgroundTaskBuilder taskBuilder = new BackgroundTaskBuilder
+                var taskBuilder = new BackgroundTaskBuilder
                 {
                     Name = "MDANBack",
                     TaskEntryPoint = typeof(MdanBack).ToString(),
                 };
-                taskBuilder.SetTrigger(new TimeTrigger(15, false));
+                taskBuilder.SetTrigger(new TimeTrigger(20, false));
                 var registration = taskBuilder.Register();
             }
         }

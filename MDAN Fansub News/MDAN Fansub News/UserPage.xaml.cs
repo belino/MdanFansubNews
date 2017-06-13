@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Popups;
@@ -23,12 +22,9 @@ namespace MDAN_App_Base
             InitializeComponent();
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                Debug.WriteLine("BackRequested");
-                if (Frame.CanGoBack)
-                {
-                    Frame.GoBack();
-                    a.Handled = true;
-                }
+                if (!Frame.CanGoBack) return;
+                Frame.GoBack();
+                a.Handled = true;
             };
         }
 
@@ -74,9 +70,7 @@ namespace MDAN_App_Base
 
         private void notificationSwitch_Toggled(object sender, RoutedEventArgs e)
         {
-            if (notificationSwitch.IsOn)
-                user.Notifications = true;
-            else user.Notifications = false;
+            user.Notifications = notificationSwitch.IsOn;
             ApplicationData.Current.LocalSettings.Values["Notifications"] = user.Notifications;
         }
     }
