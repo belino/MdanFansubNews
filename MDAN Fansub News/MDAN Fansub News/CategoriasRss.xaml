@@ -34,7 +34,7 @@
                 <TextBlock HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="WrapWholeWords">
                     <Run Text="Categorias" FontSize="20"></Run>
                     <LineBreak></LineBreak>
-                    <Run  Text="Escolha as categorias que apareceram no RSS." >
+                    <Run  Text="Escolha as categorias que aparecerão no RSS." >
                         
                     </Run>
                     <LineBreak></LineBreak>
