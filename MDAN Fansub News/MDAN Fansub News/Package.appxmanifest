@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="46441Nutcoders.MDANFansub" Publisher="CN=272CBEEB-78C4-4AF5-AC63-8364854F8776" Version="2.4.26.0" />
+  <Identity Name="46441Nutcoders.MDANFansub" Publisher="CN=272CBEEB-78C4-4AF5-AC63-8364854F8776" Version="2.4.27.0" />
   <mp:PhoneIdentity PhoneProductId="2927691f-1d75-4ee0-88ae-67ea69c37b27" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>MDAN Fansub</DisplayName>

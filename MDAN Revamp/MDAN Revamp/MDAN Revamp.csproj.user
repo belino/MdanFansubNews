@@ -12,6 +12,6 @@
     <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <DeviceId>25433CEB-C8BF-4422-B581-3EEFFC9B8ED6</DeviceId>
   </PropertyGroup>
 </Project>

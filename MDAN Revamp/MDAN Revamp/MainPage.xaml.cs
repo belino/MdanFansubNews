@@ -6,12 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Json;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -32,7 +34,8 @@ namespace MDAN_Revamp
     public sealed partial class MainPage : Page
     {
         List<RSSItem> mainList = new List<RSSItem>();
-        //bool backtask_ = false;
+        private const string JSONFILENAME = "data.json";
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -43,65 +46,104 @@ namespace MDAN_Revamp
         private async void Reader()
         {
             // In this event we need to create the web client who's going to download the informations from our link  
-            HttpClient wc = new HttpClient();
-            var rssContent = await wc.GetStringAsync("http://mdan.org/feed/");
-            if(ApplicationData.Current.LocalSettings.Values["Notifications"] != null)
+            var wc = new System.Net.Http.HttpClient();
+            var rssContent = string.Empty;
+            var error = false;
+            try
             {
-                var backdata = (bool)ApplicationData.Current.LocalSettings.Values["Notifications"];
+                rssContent = await wc.GetStringAsync("http://mdan.org/feed/");
             }
-            else
+            catch (Exception ex)
             {
-                ApplicationData.Current.LocalSettings.Values["Notifications"]=true;
+                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", ex.Message)); await dialog.ShowAsync();
+                error = true;
             }
+           
+            var result = XElement.Parse(rssContent).Descendants("item").ToList();
+            foreach (var x in result)
+            {
+                var noticia = new RSSItem
+                {
+                    Title1 = x.Element("title")?.Value.TrimStart(),
+                    pubDate1 = x.Element("pubDate")?.Value.Substring(0, 22),
+                    Description1 =
+                        WebUtility.HtmlDecode(
+                            Regex.Replace(x.Element("description")?.Value.Replace("\r", "").Replace("\n", " "),
+                                @"<[^>]+>|&nbsp;", "").Trim()),
+                    Link1 = x.Element("link")?.Value,
+                    Image1 = GetImagesInHTMLString(x.Value).Count > 0
+                        ? GetImagesInHTMLString(x.Value)[0]
+                        : @"http://cdn.meme.am/instances/250x250/62004543.jpg"
+                };
+                mainList.Add(noticia);
+            }
+            var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
+                select new RSSItem
+                {
+                    Title1 = rss.Element("title").Value.TrimStart(),
 
-            var RssData = from rss in XElement.Parse(rssContent).Descendants("item")
-                          select new RSSItem
-                          {
-                              Title1 = rss.Element("title").Value.TrimStart(),
+                    pubDate1 = rss.Element("pubDate").Value.Substring(0, 22),
+                    Description1 = WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"<[^>]+>|&nbsp;", "").Trim()),
+                    Link1 = rss.Element("link").Value,
+                    Image1 = GetImagesInHTMLString(rss.Value)[0]
+                };
 
-                              pubDate1 = rss.Element("pubDate").Value.Substring(0, 22),
-                              Description1 = System.Net.WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"<[^>]+>|&nbsp;", "").Trim()),
-                              Link1 = rss.Element("link").Value,
-                              Image1 = GetImagesInHtmlString(rss.Value)[0]
-                          };
-            mainList = RssData.ToList<RSSItem>();
 
             try
             {
-                for (int i = 0; i <= 2; i++)
+                for (var i = 0; i <= 2; i++)
                 {
                     if (i == 0)
                     {
-                        this.newRelease.Text = mainList[i].Title1;
-                        this.newImage.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease.Text = mainList[i].Title1;
+                        newImage.Source = new BitmapImage(new Uri(mainList[i].Image1));
                         newImage.Visibility = Visibility.Visible;
+                        writeJSONAsync(mainList[i].Title1);
                         ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title1;
+
                     }
                     if (i == 1)
                     {
-                        this.newRelease1.Text = mainList[i].Title1;
-                        this.newImage1.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease1.Text = mainList[i].Title1;
+                        newImage1.Source = new BitmapImage(new Uri(mainList[i].Image1));
                         newImage1.Visibility = Visibility.Visible;
                     }
                     if (i == 2)
                     {
-                        this.newRelease2.Text = mainList[i].Title1;
-                        this.newImage2.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease2.Text = mainList[i].Title1;
+                        newImage2.Source = new BitmapImage(new Uri(mainList[i].Image1));
                         newImage2.Visibility = Visibility.Visible;
                     }
+
                 }
 
             }
             catch (Exception e)
             {
-                throw e;
+                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", e.Message)); await dialog.ShowAsync();
             }
             finally
             {
                 newImage.Visibility = Visibility.Visible;
             }
-            listRss.ItemsSource = RssData;
+
+            listRss.ItemsSource = mainList;
         }
+
+        private async void writeJSONAsync(string deb)
+        {
+
+            // Notice that the write is ALMOST identical ... except for the serializer.
+            var serializer = new DataContractJsonSerializer(typeof(string));
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
+                JSONFILENAME,
+                CreationCollisionOption.ReplaceExisting))
+            {
+                serializer.WriteObject(stream, deb);
+            }
+
+        }
+
 
         async void RegisterBackGroundTask()
         {
@@ -144,7 +186,7 @@ namespace MDAN_Revamp
             
         }
 
-        private static List<string> GetImagesInHtmlString(string htmlString)
+        private List<string> GetImagesInHTMLString(string htmlString)
         {
             var images = new List<string>();
 

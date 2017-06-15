@@ -21,9 +21,9 @@ namespace MDAN_App_Base
         public CategoriasRss()
         {
             InitializeComponent();
+            SetCheckList();
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
-                
                 if (!Frame.CanGoBack) return;
                 Frame.GoBack();
                 a.Handled = true;
