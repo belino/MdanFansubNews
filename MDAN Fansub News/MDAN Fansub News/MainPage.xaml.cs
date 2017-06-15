@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.Storage;
 using Windows.UI.Xaml.Controls;
@@ -7,7 +6,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Mdan.Background;
 using Windows.UI.Notifications;
-using System.Diagnostics;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -26,17 +24,11 @@ namespace MDAN_App_Base
             InitializeComponent();
             ApplicationData.Current.LocalSettings.Values["Notifications"] = _user.Notifications;
             ApplicationData.Current.LocalSettings.Values["Counter"] = 0;
-            _user.TrackerUri = ApplicationData.Current.LocalSettings.Values["Tracker"].ToString();
+            RestoreUser(_user);
             _user.CatsRetriever();
             var updater = TileUpdateManager.CreateTileUpdaterForApplication();
             updater.Clear();
             
-        }
-
-        private static async void NotiRequesterPhone()
-        {
-            await BackgroundExecutionManager.RequestAccessAsync();
-
         }
 
         private void hamburgerButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -45,7 +37,7 @@ namespace MDAN_App_Base
         }
 
 
-        private async void RegisterBackgroundTask()
+        private static async void RegisterBackgroundTask()
         {
             var backgroundAccessStatus = await BackgroundExecutionManager.RequestAccessAsync();
             if (backgroundAccessStatus == BackgroundAccessStatus.AlwaysAllowed ||

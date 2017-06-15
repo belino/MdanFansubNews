@@ -10,18 +10,40 @@
     >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="SplitModeWide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="menu.DisplayMode" Value="Inline"/>
+                        <Setter Target="menu.IsPaneOpen" Value="True"/>
+                        <Setter Target="menu.PaneBackground" Value="#FF8798BE"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="SplitModeNarrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="menu.PaneBackground" Value="#FF8798BE"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
 
-            <SplitView x:Name="menu" OpenPaneLength="250"   DisplayMode="CompactOverlay" PaneBackground="#FF3482FA" >
+            <SplitView x:Name="menu" OpenPaneLength="220"   DisplayMode="Overlay" PaneBackground="#FF3482FA" >
 
                 <SplitView.Pane>
 
                     <StackPanel>
-                        <Grid HorizontalAlignment="Center">
+                        <Grid HorizontalAlignment="Left" Margin="5">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
@@ -43,16 +65,16 @@
 
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="0">
-                                <Button x:Name="siteNews" FontFamily="Segoe MDL2 Assets" Content="&#xE128;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="home_Tapped"  />
+                                <Button x:Name="siteNews" FontFamily="Segoe MDL2 Assets" Content="&#xE128;" FontSize="20" Foreground="White" Background="Transparent" Tapped="home_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="1">
-                                <TextBlock Text="Novidades do Site" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="home_Tapped" />
+                                <TextBlock Text="Novidades do Site" Foreground="White" FontSize="16" Margin="10,0,0,0" Tapped="home_Tapped" />
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="0">
-                                <Button x:Name="trackerNews" FontFamily="Segoe MDL2 Assets" Content="&#xE170;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="tracker_Tapped"  />
+                                <Button x:Name="trackerNews" FontFamily="Segoe MDL2 Assets" Content="&#xE170;" FontSize="20" Foreground="White" Background="Transparent" Tapped="tracker_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="1">
-                                <TextBlock Text="Novidades do Tracker" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="tracker_Tapped" />
+                                <TextBlock Text="Novidades do Tracker" Foreground="White" FontSize="16" Margin="10,0,0,0" Tapped="tracker_Tapped" />
                             </Grid>
                             <!--<Grid Grid.Row="3" Grid.Column="0">
                                 <Button x:Name="chat" FontFamily="Segoe MDL2 Assets" Content="&#xE15F;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="chat_Tapped"  />
@@ -61,16 +83,16 @@
                                 <TextBlock Text="Chat" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="chat_Tapped" />
                             </Grid>-->
                             <Grid Grid.Row="4" Grid.Column="0">
-                                <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xE115;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="settings_Tapped"  />
+                                <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xE115;" FontSize="20" Foreground="White" Background="Transparent" Tapped="settings_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="4" Grid.Column="1">
-                                <TextBlock Text="Settings" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="settings_Tapped" />
+                                <TextBlock Text="Settings" Foreground="White" FontSize="16" Margin="10,0,0,0" Tapped="settings_Tapped" />
                             </Grid>
                             <Grid Grid.Row="5" Grid.Column="0">
-                                <Button x:Name="About" FontFamily="Segoe MDL2 Assets" Content="&#xE11B;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="about_Tapped"  />
+                                <Button x:Name="About" FontFamily="Segoe MDL2 Assets" Content="&#xE11B;" FontSize="20" Foreground="White" Background="Transparent" Tapped="about_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="5" Grid.Column="1">
-                                <TextBlock Text="About" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="about_Tapped" />
+                                <TextBlock Text="About" Foreground="White" FontSize="16" Margin="10,0,0,0" Tapped="about_Tapped" />
                             </Grid>
                             <!--<Grid Grid.Row="6" Grid.Column="0">
                                 <Button x:Name="login" FontFamily="Segoe MDL2 Assets" Content="&#xE13D;" FontSize="20" Foreground="White" Background="#FF3482FA"  />
@@ -94,9 +116,9 @@
         </Grid>
         <Grid Grid.Row="0" Background="#FF1A4A93">
 
-            <Button x:Name="hamburgerButton" Height="50" Width="48"  FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Tapped="hamburgerButton_Tapped" FontSize="26.667" Foreground="White"  FontWeight="Bold"  />
+            <Button x:Name="hamburgerButton" Height="40" Width="48"  FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Tapped="hamburgerButton_Tapped" FontSize="26.667" Foreground="White"  FontWeight="Bold"  />
 
-            <Image Source="/Images/mdanlogo1.png" Height="50"  HorizontalAlignment="Right" />
+            <Image Source="/Images/mdanlogo1.png" Height="40"  HorizontalAlignment="Right" />
             <TextBlock Text="MDAN Fansub" FontSize="20" Foreground="White" FontWeight="Bold" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
 
         </Grid>

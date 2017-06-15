@@ -20,6 +20,7 @@ namespace MDAN_App_Base
         private User()
         {
             Cats = new List<int>();
+            TrackerUriGenerator();
         }
 
         public string Username { get; set; }
@@ -42,8 +43,9 @@ namespace MDAN_App_Base
 
         public void CatsRetriever()
         {
-            if (TrackerUri.Contains("="))
+            if (TrackerUri != null)
             {
+                if (!TrackerUri.Contains("=")) return;
                 var result = TrackerUri.Substring(TrackerUri.IndexOf("=", StringComparison.Ordinal) + 1);
                 var catsStringList = result.Split(',');
                 foreach (var cat in catsStringList)
@@ -51,6 +53,7 @@ namespace MDAN_App_Base
                     Cats.Add(int.Parse(cat));
                 }
             }
+            
         }
 
         public void TrackerUriGenerator()

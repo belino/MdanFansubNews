@@ -97,8 +97,8 @@
         </Grid>
     </Grid>
     <Page.BottomAppBar>
-        <CommandBar Background="#FF1A4A93">
-            <AppBarButton Label="Configurações" Icon="Setting" Click="SettingButton"/>
+        <CommandBar Background="#FF8798BE">
+            <AppBarButton Label="Configurações" Icon="Setting" Foreground="White" Click="SettingButton"/>
         </CommandBar>
     </Page.BottomAppBar>
 
