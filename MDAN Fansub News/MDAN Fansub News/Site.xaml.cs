@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Xml.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
@@ -27,19 +22,19 @@ namespace MDAN_App_Base
     /// </summary>
     public sealed partial class Site : Page
     {
-        readonly List<RSSItem> _mainList = new List<RSSItem>();
+        List<RSSItem> _mainList = new List<RSSItem>();
         private const string Jsonfilename = "data.json";
         public Site()
         {
             this.InitializeComponent();
 
             var back = "Windows.Phone.UI.Input.HardwareButtons";
-            if (!Windows.Foundation.Metadata.ApiInformation.IsTypePresent(back))
+            if (!ApiInformation.IsTypePresent(back))
             {
                 listRss.FlowDirection = FlowDirection.LeftToRight;
             }
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
+            SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
                 if (!Frame.CanGoBack) return;
                 Frame.GoBack();
@@ -71,59 +66,23 @@ namespace MDAN_App_Base
 
         }
 
-        private async void Reader()
+
+        public void SetMainNews()
         {
-            // In this event we need to create the web client who's going to download the informations from our link  
-            var wc = new System.Net.Http.HttpClient();
-            var rssContent = string.Empty;
-            var error = false;
             try
             {
-                 rssContent = await wc.GetStringAsync("http://mdan.org/feed/");
-            }
-            catch(Exception ex)
-            {
-                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", ex.Message)); await dialog.ShowAsync();
-                error = true;
-            }
-            finally
-            {
-                if(error)
-                Frame.Navigate(typeof(Error));
-            }
-
-            var result = XElement.Parse(rssContent).Descendants("item").ToList();
-            foreach(var x in result)
-            {
-                var noticia = new RSSItem
+                for (var i = 0; i <= 2; i++)
                 {
-                    Title1 = x.Element("title")?.Value.TrimStart(),
-                    pubDate1 = x.Element("pubDate")?.Value.Substring(0, 22),
-                    Description1 =
-                        WebUtility.HtmlDecode(
-                            Regex.Replace(x.Element("description")?.Value.Replace("\r", "").Replace("\n", " "),
-                                @"<[^>]+>|&nbsp;", "").Trim()),
-                    Link1 = x.Element("link")?.Value,
-                    Image1 = GetImagesInHTMLString(x.Value).Count > 0
-                        ? GetImagesInHTMLString(x.Value)[0]
-                        : @"http://cdn.meme.am/instances/250x250/62004543.jpg"
-                };
-                _mainList.Add(noticia);
-            }
-            
-
-            try {
-                for(var i =0; i <= 2; i++)
-                {
-                    if( i == 0) {
+                    if (i == 0)
+                    {
                         newRelease.Text = _mainList[i].Title1;
                         newImage.Source = new BitmapImage(new Uri(_mainList[i].Image1));
                         newImage.Visibility = Visibility.Visible;
                         writeJSONAsync(_mainList[i].Title1);
                         ApplicationData.Current.LocalSettings.Values["LastUp"] = _mainList[i].Title1;
-                        
+
                     }
-                    if(i == 1)
+                    if (i == 1)
                     {
                         newRelease1.Text = _mainList[i].Title1;
                         newImage1.Source = new BitmapImage(new Uri(_mainList[i].Image1));
@@ -135,21 +94,38 @@ namespace MDAN_App_Base
                         newImage2.Source = new BitmapImage(new Uri(_mainList[i].Image1));
                         newImage2.Visibility = Visibility.Visible;
                     }
-                    
+
                 }
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", e.Message)); await dialog.ShowAsync();
-               Frame.Navigate(typeof(Error));
+                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", e.Message)); dialog.ShowAsync();
+                Frame.Navigate(typeof(Error));
             }
             finally
             {
                 newImage.Visibility = Visibility.Visible;
             }
-            
-            listRss.ItemsSource = _mainList;
+
+        }
+
+
+        private async void Reader()
+        {
+            try
+            {
+                _mainList = DataDownloader.Reader().Result;
+                SetMainNews();
+                listRss.ItemsSource = _mainList;
+            }
+            catch (Exception ex)
+            {
+                var message = string.Format("Ocorreu um erro durante o acesso ao tracker. Tente mais tarde. Você pode reportar o erro ao Detona XD. Erro: {0}", ex.Message);
+                var dialog = new MessageDialog(message) { Title = "Erro" };
+                dialog.Commands.Add(new UICommand { Label = "OK", Id = 0 });
+                await dialog.ShowAsync();
+            }
         }
 
         
@@ -159,50 +135,11 @@ namespace MDAN_App_Base
             Reader();
         }
 
-        private List<string> GetImagesInHTMLString(string htmlString)
-        {
-            var images = new List<string>();
-            
-            const string pattern = @"http://i.imgur\b[^>]*>";
-            const string pattern2 = @"http://imgur\b[^>]*>";
-            const string pattern3= @"https://s^(([0-9]*)|(([0-9]*)\.([0-9]*)))$\b[^>]*>";
-            var rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            var matches = rgx.Matches(htmlString);
-            if(matches.Count == 0)
-            {
-                rgx = new Regex(pattern2, RegexOptions.IgnoreCase);
-                matches = rgx.Matches(htmlString);
-                if (matches.Count == 0)
-                {
-                    rgx = new Regex(pattern3, RegexOptions.IgnoreCase);
-                    matches = rgx.Matches(htmlString);
-                }
-
-            }
-            for (int i = 0, l = matches.Count; i < l; i++)
-            {
-                //var fixedString = Regex.Replace(matches[i].Value, @"<[^>]+>|&nbsp;", "").Trim();
-                //var fixedString2 = Regex.Replace(fixedString, @"\s{2,}", " ");
-                var fixedString2 = Regex.Replace(matches[i].Value, "<img ", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\\ class=\"", string.Empty);
-                var index = fixedString2.LastIndexOf("border=", StringComparison.Ordinal);
-                if (index > 0)
-                    fixedString2 = fixedString2.Substring(0, index);
-                fixedString2 = Regex.Replace(fixedString2, "\\ border=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "src=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\\ alt=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "/>", string.Empty);
-                fixedString2 = WebUtility.HtmlDecode(fixedString2).Trim();
-                images.Add(fixedString2);
-            }
-
-            return images;
-        }
+        
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            int index = listRss.SelectedIndex;
+            var index = listRss.SelectedIndex;
             Uri uri = new Uri(_mainList[index+3].Link1);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
