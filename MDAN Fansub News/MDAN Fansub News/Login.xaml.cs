@@ -63,7 +63,7 @@ namespace MDAN_App_Base
                 var encryptedString = CryptographicBuffer.EncodeToBase64String(encryptedBuffer);
                 return encryptedString;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return "";
             }

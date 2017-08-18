@@ -1,12 +1,12 @@
 {
-  "version": 2,
+  "version": 3,
   "targets": {
-    "UAP,Version=v10.0": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -68,33 +68,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -278,14 +278,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -410,7 +410,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -792,7 +792,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -2512,21 +2512,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-arm": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -2588,33 +2588,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -2745,14 +2745,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -2878,7 +2878,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -3517,7 +3517,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -5062,21 +5062,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-arm-aot": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-arm-aot": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -5138,33 +5138,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -5296,14 +5296,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -5429,7 +5429,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -5855,9 +5855,6 @@
       },
       "runtime.win10-arm-aot.runtime.native.System.IO.Compression/4.0.1": {
         "type": "package",
-        "compile": {
-          "runtimes/win10-arm-aot/lib/netcore50/_._": {}
-        },
         "runtime": {
           "runtimes/win10-arm-aot/lib/netcore50/clrcompression.dll": {}
         }
@@ -6106,7 +6103,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -7651,21 +7648,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-x64": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -7727,33 +7724,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -7887,14 +7884,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -8020,7 +8017,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -8665,7 +8662,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -10210,21 +10207,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-x64-aot": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-x64-aot": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -10286,33 +10283,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -10447,14 +10444,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -10580,7 +10577,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -11006,9 +11003,6 @@
       },
       "runtime.win10-x64-aot.runtime.native.System.IO.Compression/4.0.1": {
         "type": "package",
-        "compile": {
-          "runtimes/win10-x64-aot/lib/netcore50/_._": {}
-        },
         "runtime": {
           "runtimes/win10-x64-aot/lib/netcore50/clrcompression.dll": {}
         }
@@ -11263,7 +11257,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -12808,21 +12802,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-x86": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -12884,33 +12878,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -13044,14 +13038,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -13177,7 +13171,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -13822,7 +13816,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -15367,21 +15361,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     },
-    "UAP,Version=v10.0/win10-x86-aot": {
-      "Microsoft.ApplicationInsights/2.4.0-beta3": {
+    "UAP,Version=v10.0.10240/win10-x86-aot": {
+      "Microsoft.ApplicationInsights/2.4.0": {
         "type": "package",
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Diagnostics.DiagnosticSource": "4.4.0-beta-25130-03",
+          "System.Diagnostics.DiagnosticSource": "4.4.0",
           "System.Diagnostics.StackTrace": "4.3.0"
         },
         "compile": {
@@ -15443,33 +15437,33 @@
           "lib/netcore50/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.Net.Native.Compiler/1.6.2": {
+      "Microsoft.Net.Native.Compiler/1.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Net.Native.SharedLibrary-arm": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x64": "1.6.1",
-          "Microsoft.Net.Native.SharedLibrary-x86": "1.6.1"
+          "Microsoft.Net.Native.SharedLibrary-arm": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x64": "1.7.0",
+          "Microsoft.Net.Native.SharedLibrary-x86": "1.7.0"
         },
         "build": {
           "build/Microsoft.Net.Native.Compiler.props": {},
           "build/Microsoft.Net.Native.Compiler.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-arm.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-arm.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x64.props": {},
           "build/Microsoft.Net.Native.SharedLibrary-x64.targets": {}
         }
       },
-      "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
+      "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
         "type": "package",
         "build": {
           "build/Microsoft.Net.Native.SharedLibrary-x86.props": {},
@@ -15604,14 +15598,14 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
+      "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.NETCore": "5.0.2",
           "Microsoft.NETCore.Portable.Compatibility": "1.0.2",
           "Microsoft.NETCore.Runtime.CoreCLR": "1.0.3",
           "Microsoft.NETCore.Targets": "1.0.2",
-          "Microsoft.Net.Native.Compiler": "1.6.2",
+          "Microsoft.Net.Native.Compiler": "1.7.0",
           "Microsoft.Win32.Primitives": "4.0.1",
           "System.Collections.NonGeneric": "4.0.1",
           "System.Collections.Specialized": "4.0.1",
@@ -15737,7 +15731,7 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/10.0.2": {
+      "Newtonsoft.Json/10.0.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.CSharp": "4.3.0",
@@ -16163,9 +16157,6 @@
       },
       "runtime.win10-x86-aot.runtime.native.System.IO.Compression/4.0.1": {
         "type": "package",
-        "compile": {
-          "runtimes/win10-x86-aot/lib/netcore50/_._": {}
-        },
         "runtime": {
           "runtimes/win10-x86-aot/lib/netcore50/clrcompression.dll": {}
         }
@@ -16420,7 +16411,7 @@
           "lib/win8/_._": {}
         }
       },
-      "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
+      "System.Diagnostics.DiagnosticSource/4.4.0": {
         "type": "package",
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -17965,21 +17956,21 @@
       },
       "Mdan.Background/1.0.0": {
         "type": "project",
-        "framework": "UAP,Version=v10.0",
+        "framework": "UAP,Version=v10.0.10240",
         "dependencies": {
           "MDAN App Base": "1.0.0",
-          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-          "Newtonsoft.Json": "10.0.2",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+          "Newtonsoft.Json": "10.0.3",
           "NotificationsExtensions.Win10": "14332.0.2"
         }
       }
     }
   },
   "libraries": {
-    "Microsoft.ApplicationInsights/2.4.0-beta3": {
-      "sha512": "w26P9Fdtk6GQkHNqwQekBqNOOv3oM7YCG3FfiaYgLvM89bqI49ji9J+JMYkl94nANXYU1iOTjkWXBk4UclUg0w==",
+    "Microsoft.ApplicationInsights/2.4.0": {
+      "sha512": "4dX/zu3Psz9oM3ErU64xfOHuSxOwMxN6q5RabSkeYbX42Yn6dR/kDToqjs+txCRjrfHUxyYjfeJHu+MbCfvAsg==",
       "type": "package",
-      "path": "microsoft.applicationinsights/2.4.0-beta3",
+      "path": "microsoft.applicationinsights/2.4.0",
       "files": [
         "lib/net40/Microsoft.ApplicationInsights.XML",
         "lib/net40/Microsoft.ApplicationInsights.dll",
@@ -17992,7 +17983,7 @@
         "lib/portable-win81+wpa81/Microsoft.ApplicationInsights.dll",
         "lib/uap10.0/Microsoft.ApplicationInsights.dll",
         "lib/wp8/Microsoft.ApplicationInsights.dll",
-        "microsoft.applicationinsights.2.4.0-beta3.nupkg.sha512",
+        "microsoft.applicationinsights.2.4.0.nupkg.sha512",
         "microsoft.applicationinsights.nuspec"
       ]
     },
@@ -18085,14 +18076,14 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.Net.Native.Compiler/1.6.2": {
-      "sha512": "28VesDpHpRatYNlydGB2JbCpjOo2Ils4v2J/O46lHKpLgmCrf6UzAwWnUZq5fhLzJETWb+a0AlENY3hABASQEg==",
+    "Microsoft.Net.Native.Compiler/1.7.0": {
+      "sha512": "g46kdqDNrrVx3CiUoSe2QDkUPi/hsncwGK2k0jti5e6PZkiUWlplhkjGHS/Xrp4dx6+KhC3tuUtStHaNX7emMQ==",
       "type": "package",
-      "path": "microsoft.net.native.compiler/1.6.2",
+      "path": "microsoft.net.native.compiler/1.7.0",
       "files": [
         "build/Microsoft.Net.Native.Compiler.props",
         "build/Microsoft.Net.Native.Compiler.targets",
-        "microsoft.net.native.compiler.1.6.2.nupkg.sha512",
+        "microsoft.net.native.compiler.1.7.0.nupkg.sha512",
         "microsoft.net.native.compiler.nuspec",
         "tools/LibraryXML/Callisto.rd.xml",
         "tools/LibraryXML/GalaSoft.MvvmLight.Extras.Win8.rd.xml",
@@ -18128,7 +18119,7 @@
         "tools/Packages/Microsoft.NETNative.Analyzer/1.0.0/tools/install.ps1",
         "tools/Packages/Microsoft.NETNative.Analyzer/1.0.0/tools/uninstall.ps1",
         "tools/Runtime/arm/CommandProvider.dll",
-        "tools/Runtime/arm/Microsoft.NET.Native.Runtime.1.6.appx",
+        "tools/Runtime/arm/Microsoft.NET.Native.Runtime.1.7.appx",
         "tools/Runtime/arm/SymbolProvider.dll",
         "tools/Runtime/arm/mrt100_app.pdb",
         "tools/Runtime/arm/mrt100dac_winarm.dll",
@@ -18144,7 +18135,7 @@
         "tools/Runtime/arm/mrt100sos_x86.dll",
         "tools/Runtime/arm/msdia120.dll",
         "tools/Runtime/x64/CommandProvider.dll",
-        "tools/Runtime/x64/Microsoft.NET.Native.Runtime.1.6.appx",
+        "tools/Runtime/x64/Microsoft.NET.Native.Runtime.1.7.appx",
         "tools/Runtime/x64/SymbolProvider.dll",
         "tools/Runtime/x64/mrt100_app.pdb",
         "tools/Runtime/x64/mrt100dac_winamd64.dll",
@@ -18154,7 +18145,7 @@
         "tools/Runtime/x64/mrt100sos.dll",
         "tools/Runtime/x64/msdia120.dll",
         "tools/Runtime/x86/CommandProvider.dll",
-        "tools/Runtime/x86/Microsoft.NET.Native.Runtime.1.6.appx",
+        "tools/Runtime/x86/Microsoft.NET.Native.Runtime.1.7.appx",
         "tools/Runtime/x86/SymbolProvider.dll",
         "tools/Runtime/x86/mrt100_app.pdb",
         "tools/Runtime/x86/mrt100dac_winx86.dll",
@@ -18323,22 +18314,22 @@
         "tools/arm/ilc/tools/McgEngine.dll",
         "tools/arm/ilc/tools/MdTransform.dll",
         "tools/arm/ilc/tools/MethodBodyEditor.dll",
-        "tools/arm/ilc/tools/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "tools/arm/ilc/tools/Microsoft.ApplicationInsights.UniversalTelemetryChannel.dll",
-        "tools/arm/ilc/tools/Microsoft.ApplicationInsights.dll",
         "tools/arm/ilc/tools/Microsoft.Build.ILTasks.dll",
         "tools/arm/ilc/tools/Microsoft.Cci.dll",
+        "tools/arm/ilc/tools/Microsoft.DiaSymReader.Converter.dll",
+        "tools/arm/ilc/tools/Microsoft.DiaSymReader.dll",
         "tools/arm/ilc/tools/Microsoft.Diagnostics.Tracing.EventSource.dll",
         "tools/arm/ilc/tools/Microsoft.NetNative.IL2IL.dll",
         "tools/arm/ilc/tools/Microsoft.NetNative.Instrumentation.dll",
-        "tools/arm/ilc/tools/Microsoft.Threading.Tasks.Extensions.dll",
-        "tools/arm/ilc/tools/Microsoft.Threading.Tasks.dll",
         "tools/arm/ilc/tools/Microsoft.VisualStudio.RemoteControl.dll",
         "tools/arm/ilc/tools/Microsoft.VisualStudio.Telemetry.dll",
         "tools/arm/ilc/tools/Microsoft.VisualStudio.Utilities.Internal.dll",
         "tools/arm/ilc/tools/NativeFormatWriter.dll",
         "tools/arm/ilc/tools/Newtonsoft.Json.dll",
         "tools/arm/ilc/tools/ReducerEngine.dll",
+        "tools/arm/ilc/tools/System.Collections.Immutable.dll",
+        "tools/arm/ilc/tools/System.Reflection.Metadata.dll",
+        "tools/arm/ilc/tools/System.ValueTuple.dll",
         "tools/arm/ilc/tools/TypeNameUtilities.dll",
         "tools/arm/ilc/tools/WCFDispatchProxy.dll",
         "tools/arm/ilc/tools/c2n.dll",
@@ -18398,6 +18389,7 @@
         "tools/arm/ilc/tools/msvcdis140.dll",
         "tools/arm/ilc/tools/msvcp140.dll",
         "tools/arm/ilc/tools/nutc_driver.exe",
+        "tools/arm/ilc/tools/nutc_driver.exe.config",
         "tools/arm/ilc/tools/pgocvt.exe",
         "tools/arm/ilc/tools/pgodb140.dll",
         "tools/arm/ilc/tools/pgomgr.exe",
@@ -18586,22 +18578,22 @@
         "tools/x64/ilc/tools/McgEngine.dll",
         "tools/x64/ilc/tools/MdTransform.dll",
         "tools/x64/ilc/tools/MethodBodyEditor.dll",
-        "tools/x64/ilc/tools/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "tools/x64/ilc/tools/Microsoft.ApplicationInsights.UniversalTelemetryChannel.dll",
-        "tools/x64/ilc/tools/Microsoft.ApplicationInsights.dll",
         "tools/x64/ilc/tools/Microsoft.Build.ILTasks.dll",
         "tools/x64/ilc/tools/Microsoft.Cci.dll",
+        "tools/x64/ilc/tools/Microsoft.DiaSymReader.Converter.dll",
+        "tools/x64/ilc/tools/Microsoft.DiaSymReader.dll",
         "tools/x64/ilc/tools/Microsoft.Diagnostics.Tracing.EventSource.dll",
         "tools/x64/ilc/tools/Microsoft.NetNative.IL2IL.dll",
         "tools/x64/ilc/tools/Microsoft.NetNative.Instrumentation.dll",
-        "tools/x64/ilc/tools/Microsoft.Threading.Tasks.Extensions.dll",
-        "tools/x64/ilc/tools/Microsoft.Threading.Tasks.dll",
         "tools/x64/ilc/tools/Microsoft.VisualStudio.RemoteControl.dll",
         "tools/x64/ilc/tools/Microsoft.VisualStudio.Telemetry.dll",
         "tools/x64/ilc/tools/Microsoft.VisualStudio.Utilities.Internal.dll",
         "tools/x64/ilc/tools/NativeFormatWriter.dll",
         "tools/x64/ilc/tools/Newtonsoft.Json.dll",
         "tools/x64/ilc/tools/ReducerEngine.dll",
+        "tools/x64/ilc/tools/System.Collections.Immutable.dll",
+        "tools/x64/ilc/tools/System.Reflection.Metadata.dll",
+        "tools/x64/ilc/tools/System.ValueTuple.dll",
         "tools/x64/ilc/tools/TypeNameUtilities.dll",
         "tools/x64/ilc/tools/WCFDispatchProxy.dll",
         "tools/x64/ilc/tools/c2n.dll",
@@ -18661,6 +18653,7 @@
         "tools/x64/ilc/tools/msvcdis140.dll",
         "tools/x64/ilc/tools/msvcp140.dll",
         "tools/x64/ilc/tools/nutc_driver.exe",
+        "tools/x64/ilc/tools/nutc_driver.exe.config",
         "tools/x64/ilc/tools/pgocvt.exe",
         "tools/x64/ilc/tools/pgodb140.dll",
         "tools/x64/ilc/tools/pgomgr.exe",
@@ -18849,22 +18842,22 @@
         "tools/x86/ilc/tools/McgEngine.dll",
         "tools/x86/ilc/tools/MdTransform.dll",
         "tools/x86/ilc/tools/MethodBodyEditor.dll",
-        "tools/x86/ilc/tools/Microsoft.ApplicationInsights.PersistenceChannel.dll",
-        "tools/x86/ilc/tools/Microsoft.ApplicationInsights.UniversalTelemetryChannel.dll",
-        "tools/x86/ilc/tools/Microsoft.ApplicationInsights.dll",
         "tools/x86/ilc/tools/Microsoft.Build.ILTasks.dll",
         "tools/x86/ilc/tools/Microsoft.Cci.dll",
+        "tools/x86/ilc/tools/Microsoft.DiaSymReader.Converter.dll",
+        "tools/x86/ilc/tools/Microsoft.DiaSymReader.dll",
         "tools/x86/ilc/tools/Microsoft.Diagnostics.Tracing.EventSource.dll",
         "tools/x86/ilc/tools/Microsoft.NetNative.IL2IL.dll",
         "tools/x86/ilc/tools/Microsoft.NetNative.Instrumentation.dll",
-        "tools/x86/ilc/tools/Microsoft.Threading.Tasks.Extensions.dll",
-        "tools/x86/ilc/tools/Microsoft.Threading.Tasks.dll",
         "tools/x86/ilc/tools/Microsoft.VisualStudio.RemoteControl.dll",
         "tools/x86/ilc/tools/Microsoft.VisualStudio.Telemetry.dll",
         "tools/x86/ilc/tools/Microsoft.VisualStudio.Utilities.Internal.dll",
         "tools/x86/ilc/tools/NativeFormatWriter.dll",
         "tools/x86/ilc/tools/Newtonsoft.Json.dll",
         "tools/x86/ilc/tools/ReducerEngine.dll",
+        "tools/x86/ilc/tools/System.Collections.Immutable.dll",
+        "tools/x86/ilc/tools/System.Reflection.Metadata.dll",
+        "tools/x86/ilc/tools/System.ValueTuple.dll",
         "tools/x86/ilc/tools/TypeNameUtilities.dll",
         "tools/x86/ilc/tools/WCFDispatchProxy.dll",
         "tools/x86/ilc/tools/c2n.dll",
@@ -18924,6 +18917,7 @@
         "tools/x86/ilc/tools/msvcdis140.dll",
         "tools/x86/ilc/tools/msvcp140.dll",
         "tools/x86/ilc/tools/nutc_driver.exe",
+        "tools/x86/ilc/tools/nutc_driver.exe.config",
         "tools/x86/ilc/tools/pgocvt.exe",
         "tools/x86/ilc/tools/pgodb140.dll",
         "tools/x86/ilc/tools/pgomgr.exe",
@@ -18980,14 +18974,14 @@
         "tools/x86/mrt100etw.dll"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-arm/1.6.1": {
-      "sha512": "PmgXdc9F6HPU2J9s4rtzkgTqGcMx3ycradUvxRK82WTL0ltknTX4/+ZDgqYUiEdOMHwkXoAHnKcQfsIC3GQ2Ng==",
+    "Microsoft.Net.Native.SharedLibrary-arm/1.7.0": {
+      "sha512": "eI4KNNMOpgpBkdXHFgmXD2l5gNdJJOV+ntN1Fwwnm93Rr7pmD8MGssJpI7wo7+uieaFIfAZ2waZjEnRR4Uu90A==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-arm/1.6.1",
+      "path": "microsoft.net.native.sharedlibrary-arm/1.7.0",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-arm.props",
         "build/Microsoft.Net.Native.SharedLibrary-arm.targets",
-        "microsoft.net.native.sharedlibrary-arm.1.6.1.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-arm.1.7.0.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-arm.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -19141,10 +19135,9 @@
         "tools/SharedLibrary/chk/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.6.appx",
+        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.7.appx",
         "tools/SharedLibrary/chk/Native/SharedLibrary.dll",
         "tools/SharedLibrary/chk/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/chk/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.Concurrent.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Diagnostics.Tracing.SR.resw",
@@ -19346,10 +19339,9 @@
         "tools/SharedLibrary/ret/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.6.appx",
+        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.7.appx",
         "tools/SharedLibrary/ret/Native/SharedLibrary.dll",
         "tools/SharedLibrary/ret/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/ret/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/ret/SharedAssemblyILMergeInfo.csv",
         "tools/SharedLibrary/ret/SharedAssemblyList.txt",
         "tools/SharedLibrary/ret/SharedLibrary.iltransformtoc.ildll",
@@ -19380,14 +19372,14 @@
         "tools/SharedLibrary/ret/Toc/System.Text.RegularExpressions.toc"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-x64/1.6.1": {
-      "sha512": "AEd9UK6oq46NBMO29LquKza/cyaIsrrfFRMZbmDlOArS5sMVOUGga3vBDebwgRzmYtUdFFmRu3XaaKhVrncEbw==",
+    "Microsoft.Net.Native.SharedLibrary-x64/1.7.0": {
+      "sha512": "3nrUuvayvlOdmx7yzUBu2PzKeQmZ0mwqhMfarOzt6X1tKjIrOONCFqH148rP7TgQDJBfKVSShB1f+BedF69emw==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-x64/1.6.1",
+      "path": "microsoft.net.native.sharedlibrary-x64/1.7.0",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-x64.props",
         "build/Microsoft.Net.Native.SharedLibrary-x64.targets",
-        "microsoft.net.native.sharedlibrary-x64.1.6.1.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-x64.1.7.0.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-x64.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -19541,10 +19533,9 @@
         "tools/SharedLibrary/chk/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.6.appx",
+        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.7.appx",
         "tools/SharedLibrary/chk/Native/SharedLibrary.dll",
         "tools/SharedLibrary/chk/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/chk/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.Concurrent.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.SR.resw",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Diagnostics.Tracing.SR.resw",
@@ -19746,10 +19737,9 @@
         "tools/SharedLibrary/ret/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.6.appx",
+        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.7.appx",
         "tools/SharedLibrary/ret/Native/SharedLibrary.dll",
         "tools/SharedLibrary/ret/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/ret/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/ret/SharedAssemblyILMergeInfo.csv",
         "tools/SharedLibrary/ret/SharedAssemblyList.txt",
         "tools/SharedLibrary/ret/SharedLibrary.iltransformtoc.ildll",
@@ -19780,14 +19770,14 @@
         "tools/SharedLibrary/ret/Toc/System.Text.RegularExpressions.toc"
       ]
     },
-    "Microsoft.Net.Native.SharedLibrary-x86/1.6.1": {
-      "sha512": "jurbK0IemAFs0NDxXRCVMmC18p3NLKkk3SU+kqjzuOQyUiz9KTl4+ZOUDBRNcPGWnwuT5DIKdv6kYvywj0LjPw==",
+    "Microsoft.Net.Native.SharedLibrary-x86/1.7.0": {
+      "sha512": "nC682cBwXA/ITw1BKnPxMBp93uHHFPmG/X9P+mQt1yCJBXnEcNi7XzzOROmqMuNwwtk5ci/cQE4HQDytn3O39g==",
       "type": "package",
-      "path": "microsoft.net.native.sharedlibrary-x86/1.6.1",
+      "path": "microsoft.net.native.sharedlibrary-x86/1.7.0",
       "files": [
         "build/Microsoft.Net.Native.SharedLibrary-x86.props",
         "build/Microsoft.Net.Native.SharedLibrary-x86.targets",
-        "microsoft.net.native.sharedlibrary-x86.1.6.1.nupkg.sha512",
+        "microsoft.net.native.sharedlibrary-x86.1.7.0.nupkg.sha512",
         "microsoft.net.native.sharedlibrary-x86.nuspec",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltoc",
         "tools/SharedLibrary/chk/AnalysisILToc/System.Collections.Concurrent.iltocpdb",
@@ -19941,7 +19931,7 @@
         "tools/SharedLibrary/chk/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/chk/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.6.appx",
+        "tools/SharedLibrary/chk/Native/Microsoft.NET.Native.Framework.Debug.1.7.appx",
         "tools/SharedLibrary/chk/Native/SharedLibrary.dll",
         "tools/SharedLibrary/chk/Native/SharedLibrary.pdb",
         "tools/SharedLibrary/chk/ResW/FxResources.System.Collections.Concurrent.SR.resw",
@@ -20145,10 +20135,9 @@
         "tools/SharedLibrary/ret/ILTransformed/System.Text.RegularExpressions.ilpdb",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdildll",
         "tools/SharedLibrary/ret/MDIL/SharedLibrary.mdilpdb",
-        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.6.appx",
+        "tools/SharedLibrary/ret/Native/Microsoft.NET.Native.Framework.1.7.appx",
         "tools/SharedLibrary/ret/Native/SharedLibrary.dll",
         "tools/SharedLibrary/ret/Native/SharedLibrary.pdb",
-        "tools/SharedLibrary/ret/Native/SharedLibrary.pdb.srcsrv.txt",
         "tools/SharedLibrary/ret/SharedAssemblyILMergeInfo.csv",
         "tools/SharedLibrary/ret/SharedAssemblyList.txt",
         "tools/SharedLibrary/ret/SharedLibrary.iltransformtoc.ildll",
@@ -20322,14 +20311,14 @@
         "runtime.json"
       ]
     },
-    "Microsoft.NETCore.UniversalWindowsPlatform/5.3.3": {
-      "sha512": "aCy8WhdcWqIl+gUoY905OWPCP1NqVOtT4Oejn7SIZb9KPKkB5cUfvLEmsY3xwud0TIaJaExKTUhrFluzKtSblQ==",
+    "Microsoft.NETCore.UniversalWindowsPlatform/5.4.0": {
+      "sha512": "n4RuBnnZXGZbpXJb49CuZxc6Yu8WeRTzkg1dutyT8a4PczoST7uRVZpH3bRAOa6+dpulzP0qUH60+xPGxmzsWA==",
       "type": "package",
-      "path": "microsoft.netcore.universalwindowsplatform/5.3.3",
+      "path": "microsoft.netcore.universalwindowsplatform/5.4.0",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
-        "microsoft.netcore.universalwindowsplatform.5.3.3.nupkg.sha512",
+        "microsoft.netcore.universalwindowsplatform.5.4.0.nupkg.sha512",
         "microsoft.netcore.universalwindowsplatform.nuspec"
       ]
     },
@@ -20435,10 +20424,10 @@
         "dotnet_library_license.txt"
       ]
     },
-    "Newtonsoft.Json/10.0.2": {
-      "sha512": "iwElSU2IXmwGvytJsezyDML2ZWDkG2JzTYzlU/BNlmzMdlmRvbnwITsGGY74gwVEpDli1UdOLkMT7/3jxWvXzA==",
+    "Newtonsoft.Json/10.0.3": {
+      "sha512": "wBM7i7i3U2WX0ecor4zdVGvgrwFUjuigBoHKiL+nH39fCOpCPjBY3RDqJM32edvdyTAVdjzlccHsg41+/+zpSA==",
       "type": "package",
-      "path": "newtonsoft.json/10.0.2",
+      "path": "newtonsoft.json/10.0.3",
       "files": [
         "LICENSE.md",
         "lib/net20/Newtonsoft.Json.dll",
@@ -20453,11 +20442,11 @@
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net40+sl5+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.dll",
-        "lib/portable-net45+win8+wpa81+wp8/Newtonsoft.Json.xml",
-        "newtonsoft.json.10.0.2.nupkg.sha512",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.10.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "tools/install.ps1"
       ]
@@ -22370,36 +22359,26 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "System.Diagnostics.DiagnosticSource/4.4.0-preview1-25214-03": {
-      "sha512": "zndSBwT1BV5tOU9UTYZ9UyVXZJETL1SEBCuRBDKMSOR0BtgmzftLmjp5lH6bXaIVnf3pd2JvfOcpphBInFPzhg==",
+    "System.Diagnostics.DiagnosticSource/4.4.0": {
+      "sha512": "2SMt95w+TKf2fth4mSlqn1AVNSmFDQkdTVmUe6D/oP1atzVU0vxTb+iDP+IHNQB1qSbYkWNoPN55SaMsGUe68A==",
       "type": "package",
-      "path": "system.diagnostics.diagnosticsource/4.4.0-preview1-25214-03",
+      "path": "system.diagnostics.diagnosticsource/4.4.0",
       "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
         "lib/net45/System.Diagnostics.DiagnosticSource.dll",
         "lib/net45/System.Diagnostics.DiagnosticSource.xml",
         "lib/net46/System.Diagnostics.DiagnosticSource.dll",
         "lib/net46/System.Diagnostics.DiagnosticSource.xml",
-        "lib/net461/System.Diagnostics.DiagnosticSource.dll",
-        "lib/net461/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netcoreapp2.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/netcoreapp2.0/System.Diagnostics.DiagnosticSource.xml",
+        "lib/netcoreapp2.0/_._",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.1/System.Diagnostics.DiagnosticSource.xml",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll",
         "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.xml",
-        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.dll",
-        "lib/netstandard2.0/System.Diagnostics.DiagnosticSource.xml",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.dll",
         "lib/portable-net45+win8+wpa81/System.Diagnostics.DiagnosticSource.xml",
-        "runtimes/win/lib/net45/System.Diagnostics.DiagnosticSource.dll",
-        "runtimes/win/lib/net45/System.Diagnostics.DiagnosticSource.xml",
-        "runtimes/win/lib/net46/System.Diagnostics.DiagnosticSource.dll",
-        "runtimes/win/lib/net46/System.Diagnostics.DiagnosticSource.xml",
-        "runtimes/win/lib/net461/System.Diagnostics.DiagnosticSource.dll",
-        "runtimes/win/lib/net461/System.Diagnostics.DiagnosticSource.xml",
-        "system.diagnostics.diagnosticsource.4.4.0-preview1-25214-03.nupkg.sha512",
+        "ref/netcoreapp2.0/_._",
+        "system.diagnostics.diagnosticsource.4.4.0.nupkg.sha512",
         "system.diagnostics.diagnosticsource.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -26798,14 +26777,14 @@
   },
   "projectFileDependencyGroups": {
     "": [
-      "Microsoft.ApplicationInsights >= 2.4.0-beta3",
+      "Microsoft.ApplicationInsights >= 2.4.0",
       "Microsoft.ApplicationInsights.PersistenceChannel >= 2.0.0-beta3",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.1.1",
-      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.3.3",
-      "Newtonsoft.Json >= 10.0.2",
+      "Microsoft.NETCore.UniversalWindowsPlatform >= 5.4.0",
+      "Newtonsoft.Json >= 10.0.3",
       "NotificationsExtensions.Win10 >= 14332.0.2"
     ],
-    "UAP,Version=v10.0": []
+    "UAP,Version=v10.0.10240": []
   },
   "packageFolders": {
     "C:\\Users\\emp_b\\.nuget\\packages\\": {}
@@ -26816,9 +26795,19 @@
       "projectName": "MDAN Fansub News",
       "projectPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub News\\MDAN Fansub News.csproj",
       "projectJsonPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub News\\project.json",
+      "packagesPath": "C:\\Users\\emp_b\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub News\\obj\\",
       "projectStyle": "ProjectJson",
+      "configFilePaths": [
+        "C:\\Users\\emp_b\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
-        "uap10.0": {
+        "uap10.0.10240": {
           "projectReferences": {
             "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj": {
               "projectPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN App Base\\MDAN App Base.csproj"
@@ -26831,15 +26820,15 @@
       }
     },
     "dependencies": {
-      "Microsoft.ApplicationInsights": "2.4.0-beta3",
+      "Microsoft.ApplicationInsights": "2.4.0",
       "Microsoft.ApplicationInsights.PersistenceChannel": "2.0.0-beta3",
       "Microsoft.ApplicationInsights.WindowsApps": "1.1.1",
-      "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.3",
-      "Newtonsoft.Json": "10.0.2",
+      "Microsoft.NETCore.UniversalWindowsPlatform": "5.4.0",
+      "Newtonsoft.Json": "10.0.3",
       "NotificationsExtensions.Win10": "14332.0.2"
     },
     "frameworks": {
-      "uap10.0": {}
+      "uap10.0.10240": {}
     },
     "runtimes": {
       "win10-arm": {

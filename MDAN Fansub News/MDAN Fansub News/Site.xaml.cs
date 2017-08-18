@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Core;
 using Windows.Foundation.Metadata;
-using System.Runtime.Serialization.Json;
 using Windows.Storage;
 using Windows.UI.Popups;
 
@@ -20,14 +17,13 @@ namespace MDAN_App_Base
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Site : Page
+    public sealed partial class Site
     {
         List<RSSItem> _mainList = new List<RSSItem>();
-        private const string Jsonfilename = "data.json";
+
         public Site()
         {
-            this.InitializeComponent();
-
+            InitializeComponent();
             var back = "Windows.Phone.UI.Input.HardwareButtons";
             if (!ApiInformation.IsTypePresent(back))
             {
@@ -52,20 +48,6 @@ namespace MDAN_App_Base
             }
         }
 
-        private async void writeJSONAsync(string deb)
-        {
-
-            // Notice that the write is ALMOST identical ... except for the serializer.
-            var serializer = new DataContractJsonSerializer(typeof(string));
-            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
-                          Jsonfilename,
-                          CreationCollisionOption.ReplaceExisting))
-            {
-                serializer.WriteObject(stream, deb);
-            }
-
-        }
-
 
         public void SetMainNews()
         {
@@ -78,7 +60,6 @@ namespace MDAN_App_Base
                         newRelease.Text = _mainList[i].Title1;
                         newImage.Source = new BitmapImage(new Uri(_mainList[i].Image1));
                         newImage.Visibility = Visibility.Visible;
-                        writeJSONAsync(_mainList[i].Title1);
                         ApplicationData.Current.LocalSettings.Values["LastUp"] = _mainList[i].Title1;
 
                     }
@@ -88,20 +69,12 @@ namespace MDAN_App_Base
                         newImage1.Source = new BitmapImage(new Uri(_mainList[i].Image1));
                         newImage1.Visibility = Visibility.Visible;
                     }
-                    if (i == 2)
-                    {
-                        newRelease2.Text = _mainList[i].Title1;
-                        newImage2.Source = new BitmapImage(new Uri(_mainList[i].Image1));
-                        newImage2.Visibility = Visibility.Visible;
-                    }
-
+                    if (i != 2) continue;
+                    newRelease2.Text = _mainList[i].Title1;
+                    newImage2.Source = new BitmapImage(new Uri(_mainList[i].Image1));
+                    newImage2.Visibility = Visibility.Visible;
                 }
 
-            }
-            catch (Exception e)
-            {
-                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", e.Message)); dialog.ShowAsync();
-                Frame.Navigate(typeof(Error));
             }
             finally
             {
@@ -115,7 +88,7 @@ namespace MDAN_App_Base
         {
             try
             {
-                _mainList = DataDownloader.Reader().Result;
+                _mainList = await DataDownloader.Reader();
                 SetMainNews();
                 listRss.ItemsSource = _mainList;
             }

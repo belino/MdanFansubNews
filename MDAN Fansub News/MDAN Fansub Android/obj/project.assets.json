@@ -1,0 +1,44 @@
+{
+  "version": 3,
+  "targets": {
+    "MonoAndroid,Version=v6.0": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "MonoAndroid,Version=v6.0": []
+  },
+  "packageFolders": {
+    "C:\\Users\\emp_b\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub Android\\MDAN Fansub Android.csproj",
+      "projectName": "MDAN Fansub Android",
+      "projectPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub Android\\MDAN Fansub Android.csproj",
+      "packagesPath": "C:\\Users\\emp_b\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\emp_b\\Source\\Repos\\MdanFansubNews\\MDAN Fansub News\\MDAN Fansub Android\\obj\\",
+      "projectStyle": "PackageReference",
+      "skipContentFileWrite": true,
+      "configFilePaths": [
+        "C:\\Users\\emp_b\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "monoandroid60"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "monoandroid60": {
+          "projectReferences": {}
+        }
+      }
+    },
+    "frameworks": {
+      "monoandroid60": {}
+    }
+  }
+}

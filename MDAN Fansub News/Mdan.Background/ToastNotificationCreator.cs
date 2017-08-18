@@ -38,7 +38,7 @@ namespace Mdan.Background
 
                     AppLogoOverride = new ToastGenericAppLogo()
                     {
-                        Source = "/images/mdanlogo1.png",
+                        Source = "/Images/mdanlogo1.png",
                         HintCrop = ToastGenericAppLogoCrop.Circle
                     }
                 }

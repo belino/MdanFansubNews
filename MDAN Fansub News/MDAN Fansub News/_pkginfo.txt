@@ -1,1 +1,1 @@
-C:\Users\emp_b\Source\Repos\MdanFansubNews\MDAN Fansub News\MDAN Fansub News\bin\ARM\Release\Upload\MDAN Fansub News_2.4.27.0\MDAN Fansub News_2.4.27.0_x86_x64_arm.appxbundle
+C:\Users\emp_b\Source\Repos\MdanFansubNews\MDAN Fansub News\MDAN Fansub News\bin\ARM\Release\Upload\MDAN Fansub News_2.4.31.0\MDAN Fansub News_2.4.31.0_x86_x64_arm.appxbundle

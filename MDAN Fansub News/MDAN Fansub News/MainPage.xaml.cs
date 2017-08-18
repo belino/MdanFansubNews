@@ -22,13 +22,6 @@ namespace MDAN_App_Base
         public MainPage()
         {
             InitializeComponent();
-            ApplicationData.Current.LocalSettings.Values["Notifications"] = _user.Notifications;
-            ApplicationData.Current.LocalSettings.Values["Counter"] = 0;
-            RestoreUser(_user);
-            _user.CatsRetriever();
-            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
-            updater.Clear();
-            
         }
 
         private void hamburgerButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -65,6 +58,11 @@ namespace MDAN_App_Base
     protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             RestoreUser(_user);
+            ApplicationData.Current.LocalSettings.Values["Notifications"] = _user.Notifications;
+            ApplicationData.Current.LocalSettings.Values["Counter"] = 0;
+            _user.CatsRetriever();
+            var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+            updater.Clear();
             ((Frame) menu.Content)?.Navigate(typeof(Site));
             while (Frame.CanGoBack)
             {

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -52,7 +51,7 @@ namespace MDAN_App_Base
         {
 
 
-            HttpWebRequest wc = (HttpWebRequest)WebRequest.Create(_user.TrackerUri);
+            var wc = (HttpWebRequest)WebRequest.Create(_user.TrackerUri);
 
             wc.ContentType = "text/xml;";
             wc.Accept = "text/xml";
@@ -61,7 +60,7 @@ namespace MDAN_App_Base
             var error = false;
             try
             {
-                using (WebResponse webResponse = await wc.GetResponseAsync())
+                using (var webResponse = await wc.GetResponseAsync())
                 {
                     var reader = new StreamReader(webResponse.GetResponseStream());
                     var rssData = reader.ReadToEnd();
@@ -96,7 +95,7 @@ namespace MDAN_App_Base
         }
 
 
-        private void TrackerReader(String rssContent)
+        private void TrackerReader(string rssContent)
         {
 
             if (rssContent.Length != 0)
@@ -106,9 +105,7 @@ namespace MDAN_App_Base
                               select new RSSItem
                               {
                                   Title1 = rss.Element("title")?.Value.TrimStart(),
-                                  //pubDate1 = rss.Element("decription").Value.Substring(0, 22),
-                                  Description1 = stringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description")?.Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
-                                  //Description1 = Regex.Replace(Description1, "([[+a-zA-Z/(?:d*\\.)?\\d+]+])", ""),
+                                  Description1 = StringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description")?.Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
                                   Link1 = rss.Element("link")?.Value,
                                   Image1 = GetImagesInDesc(rss.Element("description")?.ToString())
                               };
@@ -142,12 +139,8 @@ namespace MDAN_App_Base
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
-        private String stringTreatment(string s)
+        private static string StringTreatment(string s)
         {
-            //int index = s.LastIndexOf("[img]");
-            //if (index > 0)
-            //    s = s.Substring(0, index);
-
             var k = WebUtility.HtmlDecode(Regex.Replace(s, "(http)(.*?)(?=\\[\\/IMG)|(http)(.*?)(?=\\[\\/img)|(\\[i\\])|(\\[IMG+\\]|\\[/IMG])|(\\[img+\\]|\\[/img])|(\\[size=(?:\\d*\\.)?\\d+|\\[/size)\\]|(\\[b+\\]|\\[/b])|((https)(.*?)(?=\\]))|(\\[.+?\\])", ""));
             k = Regex.Replace(k, "\\[.+?\\]", "");
             if (k.Length > 150)
@@ -165,7 +158,7 @@ namespace MDAN_App_Base
                              () => Frame.Navigate(typeof(UserPage)));
         }
 
-        private string GetImagesInDesc(string desc)
+        private static string GetImagesInDesc(string desc)
         {
             string image = @"Images\";
             if (desc.Contains("Category: Episódios"))
