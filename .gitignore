@@ -25,3 +25,7 @@
 /MDAN Revamp/MDANBack/bin
 /MDAN Revamp/packages/NotificationsExtensions.UniversalApps.1.0.3
 /MDAN Revamp/MDAN Revamp/BundleArtifacts
+/.vs
+/MDAN Fansub News/.vs/MDAN Fansub News/v15/Server/sqlite3
+/MDAN Fansub News/Mdan.Background/Backup/obj
+/MDAN Fansub News/packages/Newtonsoft.Json.11.0.2

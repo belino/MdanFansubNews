@@ -11,43 +11,43 @@ namespace MDAN_App_Base
     
      public class RSSItem
         {
-            private string Description;
+            private string _description;
 
-            public string Description1
+            public string Description
             {
-                get { return Description; }
-                set { Description = value; }
+                get { return _description; }
+                set { _description = value; }
             }
 
-            private string Link;
+            private string _link;
 
-            public string Link1
+            public string Link
             {
-                get { return Link; }
-                set { Link = value; }
+                get { return _link; }
+                set { _link = value; }
             }
 
-            private string Title;
+            private string _title;
 
-            public string Title1
+            public string Title
             {
-                get { return Title; }
-                set { Title = value; }
+                get { return _title; }
+                set { _title = value; }
             }
 
-        private string pubDate;
+        private string _pubDate;
 
-        public string pubDate1
+        public string PubDate
         {
-            get { return pubDate; }
-            set { pubDate = Regex.Replace(value, "<(img)\b[^>]*>", string.Empty); }
+            get { return _pubDate; }
+            set { _pubDate = Regex.Replace(value, "<(img)\b[^>]*>", string.Empty); }
         }
 
-        private string Image;
-        public string Image1
+        private string _image;
+        public string Image
         {
-            get { return Image; }
-            set { Image = value; }
+            get { return _image; }
+            set { _image = value; }
         }
         }
 

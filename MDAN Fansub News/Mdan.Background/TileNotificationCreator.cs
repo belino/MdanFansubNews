@@ -28,14 +28,14 @@ namespace Mdan.Background
 
                     new AdaptiveText
                     {
-                        Text = item.Title1,
+                        Text = item.Title,
                         HintWrap = true,
                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                     },
 
                     new AdaptiveImage
                     {
-                        Source = item.Image1,
+                        Source = item.Image,
                         HintCrop = AdaptiveImageCrop.Default
                     },
                 }

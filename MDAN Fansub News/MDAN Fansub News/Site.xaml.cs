@@ -97,26 +97,26 @@ namespace MDAN_App_Base
             {
                 var noticia = new RSSItem
                 {
-                    Title1 = x.Element("title").Value.TrimStart(),
-                    pubDate1 = x.Element("pubDate").Value.Substring(0, 22),
-                    Description1 =
+                    Title = x.Element("title").Value.TrimStart(),
+                    PubDate = x.Element("pubDate").Value.Substring(0, 22),
+                    Description =
                         WebUtility.HtmlDecode(
                             Regex.Replace(x.Element("description").Value.Replace("\r", "").Replace("\n", " "),
                                 @"<[^>]+>|&nbsp;", "").Trim()),
-                    Link1 = x.Element("link").Value
+                    Link = x.Element("link").Value
                 };
-                noticia.Image1 = GetImagesInHTMLString(x.Value).Count > 0 ? GetImagesInHTMLString(x.Value)[0] : @"http://cdn.meme.am/instances/250x250/62004543.jpg";
+                noticia.Image = GetImagesInHTMLString(x.Value).Count > 0 ? GetImagesInHTMLString(x.Value)[0] : @"http://cdn.meme.am/instances/250x250/62004543.jpg";
                 mainList.Add(noticia);
             }
             var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
                           select new RSSItem
                           {
-                              Title1 = rss.Element("title").Value.TrimStart(),
+                              Title = rss.Element("title").Value.TrimStart(),
                               
-                              pubDate1 = rss.Element("pubDate").Value.Substring(0,22),
-                              Description1 = WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"<[^>]+>|&nbsp;", "").Trim()),
-                              Link1 = rss.Element("link").Value,
-                              Image1 = GetImagesInHTMLString(rss.Value)[0]
+                              PubDate = rss.Element("pubDate").Value.Substring(0,22),
+                              Description = WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"<[^>]+>|&nbsp;", "").Trim()),
+                              Link = rss.Element("link").Value,
+                              Image = GetImagesInHTMLString(rss.Value)[0]
                           };
             //mainList = RssData.ToList();
             
@@ -125,23 +125,23 @@ namespace MDAN_App_Base
                 for(var i =0; i <= 2; i++)
                 {
                     if( i == 0) {
-                        newRelease.Text = mainList[i].Title1;
-                        newImage.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease.Text = mainList[i].Title;
+                        newImage.Source = new BitmapImage(new Uri(mainList[i].Image));
                         newImage.Visibility = Visibility.Visible;
-                        writeJSONAsync(mainList[i].Title1);
-                        ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title1;
+                        writeJSONAsync(mainList[i].Title);
+                        ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title;
                         
                     }
                     if(i == 1)
                     {
-                        newRelease1.Text = mainList[i].Title1;
-                        newImage1.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease1.Text = mainList[i].Title;
+                        newImage1.Source = new BitmapImage(new Uri(mainList[i].Image));
                         newImage1.Visibility = Visibility.Visible;
                     }
                     if (i == 2)
                     {
-                        newRelease2.Text = mainList[i].Title1;
-                        newImage2.Source = new BitmapImage(new Uri(mainList[i].Image1));
+                        newRelease2.Text = mainList[i].Title;
+                        newImage2.Source = new BitmapImage(new Uri(mainList[i].Image));
                         newImage2.Visibility = Visibility.Visible;
                     }
                     
@@ -212,25 +212,25 @@ namespace MDAN_App_Base
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int index = listRss.SelectedIndex;
-            Uri uri = new Uri(mainList[index+3].Link1);
+            Uri uri = new Uri(mainList[index+3].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
         private async void Grid_Tapped_1(object sender, TappedRoutedEventArgs e)
         {
-            var uri = new Uri(mainList[0].Link1);
+            var uri = new Uri(mainList[0].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
         private async void Grid_Tapped_2(object sender, TappedRoutedEventArgs e)
         {
-            var uri = new Uri(mainList[1].Link1);
+            var uri = new Uri(mainList[1].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
         private async void Grid_Tapped_3(object sender, TappedRoutedEventArgs e)
         {
-            var uri = new Uri(mainList[2].Link1);
+            var uri = new Uri(mainList[2].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
     }

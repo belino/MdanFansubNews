@@ -36,16 +36,16 @@ namespace Mdan.Background
                 var rssData = from rss in XElement.Parse(res).Descendants("item")
                                   select new RSSItem
                                   {
-                                      Title1 = rss.Element("title")?.Value.TrimStart()
+                                      Title = rss.Element("title")?.Value.TrimStart()
                                   };
                 var firstImage = GetImagesInHTMLString(res).FirstOrDefault();
                 var rssItems = rssData as IList<RSSItem> ?? rssData.ToList();
-                rssItems.ToList().FirstOrDefault().Image1 = firstImage;
+                rssItems.ToList().FirstOrDefault().Image = firstImage;
                     var lista = rssItems.ToList();
 
                 
                 var first = lista.FirstOrDefault();
-                first.Image1 = firstImage;
+                first.Image = firstImage;
                 UpdateStatusAndTime(first);
             }
             catch (Exception ex)
@@ -161,15 +161,15 @@ namespace Mdan.Background
         private static void UpdateStatusAndTime(RSSItem item)
         {
             if (!ApplicationData.Current.LocalSettings.Values.ContainsKey("LastUp")) return;
-            if (ApplicationData.Current.LocalSettings.Values["LastUp"].Equals(item.Title1))
+            if (ApplicationData.Current.LocalSettings.Values["LastUp"].Equals(item.Title))
             {
-                RefreshTile(item.Title1);
+                RefreshTile(item.Title);
             }
             else
             {
                 
                 CreateNewEntranceTile(item);
-                ApplicationData.Current.LocalSettings.Values["LastUp"] = item.Title1;
+                ApplicationData.Current.LocalSettings.Values["LastUp"] = item.Title;
             }
         }
 

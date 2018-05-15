@@ -105,12 +105,12 @@ namespace MDAN_App_Base
                 var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
                               select new RSSItem
                               {
-                                  Title1 = rss.Element("title")?.Value.TrimStart(),
+                                  Title = rss.Element("title")?.Value.TrimStart(),
                                   //pubDate1 = rss.Element("decription").Value.Substring(0, 22),
-                                  Description1 = stringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description")?.Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
+                                  Description = stringTreatment(WebUtility.HtmlDecode(Regex.Replace(rss.Element("description")?.Value.Replace("\r", "").Replace("\n", " "), @"(<[^>]+>|&nbsp;)", "").Trim())),
                                   //Description1 = Regex.Replace(Description1, "([[+a-zA-Z/(?:d*\\.)?\\d+]+])", ""),
-                                  Link1 = rss.Element("link")?.Value,
-                                  Image1 = GetImagesInDesc(rss.Element("description")?.ToString())
+                                  Link = rss.Element("link")?.Value,
+                                  Image = GetImagesInDesc(rss.Element("description")?.ToString())
                               };
 
                 var rssItems = rssData as IList<RSSItem> ?? rssData.ToList();

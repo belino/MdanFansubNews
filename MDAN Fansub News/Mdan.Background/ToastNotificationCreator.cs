@@ -27,12 +27,12 @@ namespace Mdan.Background
 
                         new AdaptiveText()
                         {
-                            Text = item.Title1
+                            Text = item.Title
                         },
 
                         new AdaptiveImage()
                         {
-                            Source = item.Image1
+                            Source = item.Image
                         }
                     },
 
