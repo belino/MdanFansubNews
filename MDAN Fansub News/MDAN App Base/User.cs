@@ -20,6 +20,7 @@ namespace MDAN_App_Base
         private User()
         {
             Cats = new List<int>();
+            TrackerUri = "";
         }
 
         public string Username { get; set; }

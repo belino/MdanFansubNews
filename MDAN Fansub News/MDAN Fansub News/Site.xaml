@@ -78,21 +78,18 @@
                                         <RowDefinition></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <Grid Row="0" Background="#FF1A4A93" CornerRadius="5" Margin="2">
-                                        <TextBlock x:Name="title" Text="{Binding Title1}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White" TextWrapping="WrapWholeWords" Margin="5"></TextBlock>
+                                        <TextBlock x:Name="title" Text="{Binding Title}" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White" TextWrapping="WrapWholeWords" Margin="5"></TextBlock>
                                     </Grid>
 
                                     <Grid Grid.Row="1" >
-
                                         <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
-                                            <Image x:Name="image" Stretch="UniformToFill" Source="{Binding Image1}" HorizontalAlignment="Center" ></Image>
+                                            <Image x:Name="image" Stretch="UniformToFill" Source="{Binding Image}" HorizontalAlignment="Center" ></Image>
                                         </Grid>
-
-
                                     </Grid>
                                     <Grid Grid.Row="2" Margin="5"  >
                                         <StackPanel>
-                                            <TextBlock x:Name="desc" Foreground="Black" Text="{Binding Description1}" TextWrapping="Wrap" TextAlignment="Justify"  ></TextBlock>
-                                            <TextBlock Margin="5" x:Name="pubdate" Foreground="Black" Text="{Binding pubDate1}" TextWrapping="Wrap" FontSize="8" ></TextBlock>
+                                            <TextBlock x:Name="desc" Foreground="Black" Text="{Binding Description}" TextWrapping="Wrap" TextAlignment="Justify"  ></TextBlock>
+                                            <TextBlock Margin="5" x:Name="pubdate" Foreground="Black" Text="{Binding PubDate}" TextWrapping="Wrap" FontSize="8" ></TextBlock>
                                         </StackPanel>
                                     </Grid>
                                 </Grid>

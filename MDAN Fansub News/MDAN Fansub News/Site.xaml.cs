@@ -73,7 +73,6 @@ namespace MDAN_App_Base
 
         private async void Reader()
         {
-            // In this event we need to create the web client who's going to download the informations from our link  
             var wc = new System.Net.Http.HttpClient();
             var rssContent = string.Empty;
             var error = false;
@@ -118,8 +117,6 @@ namespace MDAN_App_Base
                               Link = rss.Element("link").Value,
                               Image = GetImagesInHTMLString(rss.Value)[0]
                           };
-            //mainList = RssData.ToList();
-            
 
             try {
                 for(var i =0; i <= 2; i++)
@@ -170,49 +167,43 @@ namespace MDAN_App_Base
 
         private List<string> GetImagesInHTMLString(string htmlString)
         {
+            MatchCollection matches;
             var images = new List<string>();
-            
-            const string pattern = @"http://i.imgur\b[^>]*>";
-            const string pattern2 = @"http://imgur\b[^>]*>";
-            const string pattern3= @"https://s^(([0-9]*)|(([0-9]*)\.([0-9]*)))$\b[^>]*>";
-            var rgx = new Regex(pattern, RegexOptions.IgnoreCase);
-            var matches = rgx.Matches(htmlString);
-            if(matches.Count == 0)
+            var patterns = new string[] { @"http://i.imgur\b[^>]*>",
+                @"http://imgur\b[^>]*>",
+                @"https://imgur\b[^>]*>",
+                @"https://s^(([0-9]*)|(([0-9]*)\.([0-9]*)))$\b[^>]*>",
+                @"https://i.imgur\b[^>]*>" };
+            foreach(var p in patterns)
             {
-                rgx = new Regex(pattern2, RegexOptions.IgnoreCase);
+                var rgx = new Regex(p, RegexOptions.IgnoreCase);
                 matches = rgx.Matches(htmlString);
-                if (matches.Count == 0)
+                if (matches.Count > 0)
                 {
-                    rgx = new Regex(pattern3, RegexOptions.IgnoreCase);
-                    matches = rgx.Matches(htmlString);
+                    for (int i = 0, l = matches.Count; i < l; i++)
+                    {
+                        var fixedString2 = Regex.Replace(matches[i].Value, "<img ", string.Empty);
+                        fixedString2 = Regex.Replace(fixedString2, "\\ class=\"", string.Empty);
+                        var index = fixedString2.LastIndexOf("border=", StringComparison.Ordinal);
+                        if (index > 0)
+                            fixedString2 = fixedString2.Substring(0, index);
+                        fixedString2 = Regex.Replace(fixedString2, "\\ border=\"", string.Empty);
+                        fixedString2 = Regex.Replace(fixedString2, "src=\"", string.Empty);
+                        fixedString2 = Regex.Replace(fixedString2, "\\ alt=\"", string.Empty);
+                        fixedString2 = Regex.Replace(fixedString2, "\"", string.Empty);
+                        fixedString2 = Regex.Replace(fixedString2, "/>", string.Empty);
+                        fixedString2 = WebUtility.HtmlDecode(fixedString2).Trim();
+                        images.Add(fixedString2);
+                    }
                 }
-
             }
-            for (int i = 0, l = matches.Count; i < l; i++)
-            {
-                //var fixedString = Regex.Replace(matches[i].Value, @"<[^>]+>|&nbsp;", "").Trim();
-                //var fixedString2 = Regex.Replace(fixedString, @"\s{2,}", " ");
-                var fixedString2 = Regex.Replace(matches[i].Value, "<img ", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\\ class=\"", string.Empty);
-                var index = fixedString2.LastIndexOf("border=", StringComparison.Ordinal);
-                if (index > 0)
-                    fixedString2 = fixedString2.Substring(0, index);
-                fixedString2 = Regex.Replace(fixedString2, "\\ border=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "src=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\\ alt=\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "\"", string.Empty);
-                fixedString2 = Regex.Replace(fixedString2, "/>", string.Empty);
-                fixedString2 = WebUtility.HtmlDecode(fixedString2).Trim();
-                images.Add(fixedString2);
-            }
-
             return images;
         }
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int index = listRss.SelectedIndex;
-            Uri uri = new Uri(mainList[index+3].Link);
+            Uri uri = new Uri(mainList[index].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 

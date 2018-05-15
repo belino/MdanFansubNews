@@ -26,8 +26,8 @@ namespace MDAN_App_Base
             InitializeComponent();
             ApplicationData.Current.LocalSettings.Values["Notifications"] = _user.Notifications;
             ApplicationData.Current.LocalSettings.Values["Counter"] = 0;
-            _user.TrackerUri = ApplicationData.Current.LocalSettings.Values["Tracker"].ToString();
-            _user.CatsRetriever();
+            //_user.TrackerUri = ApplicationData.Current.LocalSettings.Values["Tracker"]?.ToString();
+            //_user.CatsRetriever();
             var updater = TileUpdateManager.CreateTileUpdaterForApplication();
             updater.Clear();
             

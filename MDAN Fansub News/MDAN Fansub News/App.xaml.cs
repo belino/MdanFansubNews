@@ -90,6 +90,11 @@ namespace MDAN_App_Base
             }
             // Ensure the current window is active
             Window.Current.Activate();
+
+            //if (e.Kind == ActivationKind.ToastNotification)
+            //{
+            //    rootFrame.Navigate(typeof(MainPage));
+            //}
         }
 
         /// <summary>

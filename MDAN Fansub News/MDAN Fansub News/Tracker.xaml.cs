@@ -138,7 +138,7 @@ namespace MDAN_App_Base
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             var index = listRss.SelectedIndex;
-            var uri = new Uri(MainList[index].Link1);
+            var uri = new Uri(MainList[index].Link);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 
