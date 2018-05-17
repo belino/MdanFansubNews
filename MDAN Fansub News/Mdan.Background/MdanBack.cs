@@ -1,4 +1,4 @@
-﻿using MDAN_App_Base;
+﻿using MDAN.Base;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 using NotificationsExtensions.Toasts;

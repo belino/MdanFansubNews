@@ -124,7 +124,7 @@ namespace MDAN_App_Base
                     Status = true;
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }

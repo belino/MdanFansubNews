@@ -1,0 +1,2 @@
+C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.News.Android\obj\Debug\Mdan.Fansub.News.Android.csprojAssemblyReference.cache
+C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.News.Android\obj\Debug\Mdan.Fansub.News.Android.csproj.CoreCompileInputs.cache

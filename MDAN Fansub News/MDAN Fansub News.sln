@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDAN Fansub News", "MDAN Fansub News\MDAN Fansub News.csproj", "{1F4BF379-FD53-42A9-9E27-6DB279A11E3A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDAN.Fansub.News", "MDAN Fansub News\MDAN.Fansub.News.csproj", "{1F4BF379-FD53-42A9-9E27-6DB279A11E3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDAN App Base", "MDAN App Base\MDAN App Base.csproj", "{539A8197-DEF3-4C92-BDA2-FB92EAA4F85C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDAN.Base", "MDAN App Base\MDAN.Base.csproj", "{539A8197-DEF3-4C92-BDA2-FB92EAA4F85C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdan.Background", "Mdan.Background\Mdan.Background.csproj", "{1BB347F6-1FD6-400D-BF9F-4E20A4459ADE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdan.Fansub.UnitTests", "Mdan.Fansub.UnitTests\Mdan.Fansub.UnitTests.csproj", "{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,8 +76,27 @@ Global
 		{1BB347F6-1FD6-400D-BF9F-4E20A4459ADE}.Release|x64.Build.0 = Release|x64
 		{1BB347F6-1FD6-400D-BF9F-4E20A4459ADE}.Release|x86.ActiveCfg = Release|x86
 		{1BB347F6-1FD6-400D-BF9F-4E20A4459ADE}.Release|x86.Build.0 = Release|x86
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|x64.Build.0 = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Debug|x86.Build.0 = Debug|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|ARM.Build.0 = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x64.ActiveCfg = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x64.Build.0 = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2473EA11-39C8-4EAB-98A8-8B9F4880D815}
 	EndGlobalSection
 EndGlobal

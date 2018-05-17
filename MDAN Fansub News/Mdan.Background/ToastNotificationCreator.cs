@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Notifications;
-using MDAN_App_Base;
+﻿using Windows.UI.Notifications;
+using MDAN.Base;
 using NotificationsExtensions;
 using NotificationsExtensions.Toasts;
 

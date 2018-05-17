@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI.Notifications;
-using MDAN_App_Base;
+using MDAN.Base;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 

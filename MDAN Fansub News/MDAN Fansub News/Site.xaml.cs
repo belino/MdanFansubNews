@@ -16,6 +16,7 @@ using Windows.Foundation.Metadata;
 using System.Runtime.Serialization.Json;
 using Windows.Storage;
 using Windows.UI.Popups;
+using MDAN.Base;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -71,133 +72,16 @@ namespace MDAN_App_Base
 
         }
 
-        private async void Reader()
-        {
-            var wc = new System.Net.Http.HttpClient();
-            var rssContent = string.Empty;
-            var error = false;
-            try
-            {
-                 rssContent = await wc.GetStringAsync("http://mdan.org/feed/");
-            }
-            catch(Exception ex)
-            {
-                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", ex.Message)); await dialog.ShowAsync();
-                error = true;
-            }
-            finally
-            {
-                if(error)
-                Frame.Navigate(typeof(Error));
-            }
-
-            var result = XElement.Parse(rssContent).Descendants("item").ToList();
-            foreach(var x in result)
-            {
-                var noticia = new RSSItem
-                {
-                    Title = x.Element("title").Value.TrimStart(),
-                    PubDate = x.Element("pubDate").Value.Substring(0, 22),
-                    Description =
-                        WebUtility.HtmlDecode(
-                            Regex.Replace(x.Element("description").Value.Replace("\r", "").Replace("\n", " "),
-                                @"<[^>]+>|&nbsp;", "").Trim()),
-                    Link = x.Element("link").Value
-                };
-                noticia.Image = GetImagesInHTMLString(x.Value).Count > 0 ? GetImagesInHTMLString(x.Value)[0] : @"http://cdn.meme.am/instances/250x250/62004543.jpg";
-                mainList.Add(noticia);
-            }
-            var rssData = from rss in XElement.Parse(rssContent).Descendants("item")
-                          select new RSSItem
-                          {
-                              Title = rss.Element("title").Value.TrimStart(),
-                              
-                              PubDate = rss.Element("pubDate").Value.Substring(0,22),
-                              Description = WebUtility.HtmlDecode(Regex.Replace(rss.Element("description").Value.Replace("\r", "").Replace("\n", " "), @"<[^>]+>|&nbsp;", "").Trim()),
-                              Link = rss.Element("link").Value,
-                              Image = GetImagesInHTMLString(rss.Value)[0]
-                          };
-
-            try {
-                for(var i =0; i <= 2; i++)
-                {
-                    if( i == 0) {
-                        newRelease.Text = mainList[i].Title;
-                        newImage.Source = new BitmapImage(new Uri(mainList[i].Image));
-                        newImage.Visibility = Visibility.Visible;
-                        writeJSONAsync(mainList[i].Title);
-                        ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title;
-                        
-                    }
-                    if(i == 1)
-                    {
-                        newRelease1.Text = mainList[i].Title;
-                        newImage1.Source = new BitmapImage(new Uri(mainList[i].Image));
-                        newImage1.Visibility = Visibility.Visible;
-                    }
-                    if (i == 2)
-                    {
-                        newRelease2.Text = mainList[i].Title;
-                        newImage2.Source = new BitmapImage(new Uri(mainList[i].Image));
-                        newImage2.Visibility = Visibility.Visible;
-                    }
-                    
-                }
-                
-            }
-            catch(Exception e)
-            {
-                var dialog = new MessageDialog(string.Format("Aconteceu algo estranho. Erro: {0}", e.Message)); await dialog.ShowAsync();
-               Frame.Navigate(typeof(Error));
-            }
-            finally
-            {
-                newImage.Visibility = Visibility.Visible;
-            }
-            
-            listRss.ItemsSource = mainList;
-        }
-
-        
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Reader();
+            GetContent();
         }
 
-        private List<string> GetImagesInHTMLString(string htmlString)
+        private async void GetContent()
         {
-            MatchCollection matches;
-            var images = new List<string>();
-            var patterns = new string[] { @"http://i.imgur\b[^>]*>",
-                @"http://imgur\b[^>]*>",
-                @"https://imgur\b[^>]*>",
-                @"https://s^(([0-9]*)|(([0-9]*)\.([0-9]*)))$\b[^>]*>",
-                @"https://i.imgur\b[^>]*>" };
-            foreach(var p in patterns)
-            {
-                var rgx = new Regex(p, RegexOptions.IgnoreCase);
-                matches = rgx.Matches(htmlString);
-                if (matches.Count > 0)
-                {
-                    for (int i = 0, l = matches.Count; i < l; i++)
-                    {
-                        var fixedString2 = Regex.Replace(matches[i].Value, "<img ", string.Empty);
-                        fixedString2 = Regex.Replace(fixedString2, "\\ class=\"", string.Empty);
-                        var index = fixedString2.LastIndexOf("border=", StringComparison.Ordinal);
-                        if (index > 0)
-                            fixedString2 = fixedString2.Substring(0, index);
-                        fixedString2 = Regex.Replace(fixedString2, "\\ border=\"", string.Empty);
-                        fixedString2 = Regex.Replace(fixedString2, "src=\"", string.Empty);
-                        fixedString2 = Regex.Replace(fixedString2, "\\ alt=\"", string.Empty);
-                        fixedString2 = Regex.Replace(fixedString2, "\"", string.Empty);
-                        fixedString2 = Regex.Replace(fixedString2, "/>", string.Empty);
-                        fixedString2 = WebUtility.HtmlDecode(fixedString2).Trim();
-                        images.Add(fixedString2);
-                    }
-                }
-            }
-            return images;
+            var siteContent = new SiteRssContent();
+            mainList = await siteContent.GetSiteContent();
+            listRss.ItemsSource = mainList;
         }
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)

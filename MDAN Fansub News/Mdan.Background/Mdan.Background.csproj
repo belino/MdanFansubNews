@@ -112,15 +112,18 @@
     <Compile Include="ToastNotificationCreator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MDAN App Base\MDAN App Base.csproj">
+    <ProjectReference Include="..\MDAN App Base\MDAN.Base.csproj">
       <Project>{539a8197-def3-4c92-bda2-fb92eaa4f85c}</Project>
-      <Name>MDAN App Base</Name>
+      <Name>MDAN.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\mdanlogo1.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.PersistenceChannel">
+      <Version>2.0.0-beta3</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.1.4</Version>
     </PackageReference>
