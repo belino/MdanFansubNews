@@ -35,12 +35,12 @@ namespace MDAN_App_Base
             this.InitializeComponent();
 
             var back = "Windows.Phone.UI.Input.HardwareButtons";
-            if (!Windows.Foundation.Metadata.ApiInformation.IsTypePresent(back))
+            if (!ApiInformation.IsTypePresent(back))
             {
                 listRss.FlowDirection = FlowDirection.LeftToRight;
             }
                 SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-            Windows.UI.Core.SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
+                SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
             {
                 if (!Frame.CanGoBack) return;
                 Frame.GoBack();
@@ -61,7 +61,6 @@ namespace MDAN_App_Base
         private async void writeJSONAsync(string deb)
         {
 
-            // Notice that the write is ALMOST identical ... except for the serializer.
             var serializer = new DataContractJsonSerializer(typeof(string));
             using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
                           JSONFILENAME,
@@ -82,6 +81,30 @@ namespace MDAN_App_Base
             var siteContent = new SiteRssContent();
             mainList = await siteContent.GetSiteContent();
             listRss.ItemsSource = mainList;
+            for (var i = 0; i <= 2; i++)
+            {
+                if (i == 0)
+                {
+                    newRelease.Text = mainList[i].Title;
+                    newImage.Source = new BitmapImage(new Uri(mainList[i].Image));
+                    newImage.Visibility = Visibility.Visible;
+                    writeJSONAsync(mainList[i].Title);
+                    ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title;
+
+                }
+                if (i == 1)
+                {
+                    newRelease1.Text = mainList[i].Title;
+                    newImage1.Source = new BitmapImage(new Uri(mainList[i].Image));
+                    newImage1.Visibility = Visibility.Visible;
+                }
+                if (i == 2)
+                {
+                    newRelease2.Text = mainList[i].Title;
+                    newImage2.Source = new BitmapImage(new Uri(mainList[i].Image));
+                    newImage2.Visibility = Visibility.Visible;
+                }
+            }
         }
 
         private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
