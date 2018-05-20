@@ -30,22 +30,23 @@ namespace MDAN_App_Base
     {
         List<RSSItem> mainList = new List<RSSItem>();
         private const string JSONFILENAME = "data.json";
+        private HTMLData HtmlContent;
         public Site()
         {
             this.InitializeComponent();
-
+            HtmlContent = new HTMLData();
             var back = "Windows.Phone.UI.Input.HardwareButtons";
             if (!ApiInformation.IsTypePresent(back))
             {
                 listRss.FlowDirection = FlowDirection.LeftToRight;
             }
-                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
-                SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
-            {
-                if (!Frame.CanGoBack) return;
-                Frame.GoBack();
-                a.Handled = true;
-            };
+            SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
+        {
+            if (!Frame.CanGoBack) return;
+            Frame.GoBack();
+            a.Handled = true;
+        };
 
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
             {
@@ -74,6 +75,7 @@ namespace MDAN_App_Base
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             GetContent();
+
         }
 
         private async void GetContent()
@@ -81,55 +83,58 @@ namespace MDAN_App_Base
             var siteContent = new SiteRssContent();
             mainList = await siteContent.GetSiteContent();
             listRss.ItemsSource = mainList;
-            for (var i = 0; i <= 2; i++)
-            {
-                if (i == 0)
-                {
-                    newRelease.Text = mainList[i].Title;
-                    newImage.Source = new BitmapImage(new Uri(mainList[i].Image));
-                    newImage.Visibility = Visibility.Visible;
-                    writeJSONAsync(mainList[i].Title);
-                    ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList[i].Title;
+            writeJSONAsync(mainList.First().Title);
+            ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList.First().Title;
+            NewsTitle.Text = mainList[0].Title;
+            NewsPubDate.Text = mainList[0].PubDate;
+            var htmlString = $"<style>.content {{max - width: 500px;margin: auto;}}</ style >< body >< div class='content'> {mainList[0].NewsContent}</div></body>";
+            mainList[0].NewsContent = $"<html><body>{mainList[0].NewsContent}</body></html>";
+            HtmlContent.HTML = mainList[0].NewsContent;
 
-                }
-                if (i == 1)
-                {
-                    newRelease1.Text = mainList[i].Title;
-                    newImage1.Source = new BitmapImage(new Uri(mainList[i].Image));
-                    newImage1.Visibility = Visibility.Visible;
-                }
-                if (i == 2)
-                {
-                    newRelease2.Text = mainList[i].Title;
-                    newImage2.Source = new BitmapImage(new Uri(mainList[i].Image));
-                    newImage2.Visibility = Visibility.Visible;
-                }
-            }
+            NewsTitle.Text = mainList[0].Title;
+
+            SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[0].NewsContent);
         }
 
-        private async void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int index = listRss.SelectedIndex;
-            Uri uri = new Uri(mainList[index].Link);
-            await Windows.System.Launcher.LaunchUriAsync(uri);
+            NewsTitle.Text = mainList[index].Title;
+            NewsPubDate.Text = mainList[index].PubDate;
+            mainList[index].NewsContent = $"<html><body>{mainList[index].NewsContent}</body></html>";
+            HtmlContent.HTML = mainList[index].NewsContent;
+
+            NewsTitle.Text = mainList[index].Title;
+            SetNavigationPaneVisibility();
+            SetBackButtonVisibility();
+            SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[index].NewsContent);
         }
 
-        private async void Grid_Tapped_1(object sender, TappedRoutedEventArgs e)
+        private void BackButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            var uri = new Uri(mainList[0].Link);
-            await Windows.System.Launcher.LaunchUriAsync(uri);
+            if (Window.Current.Bounds.Width < 1045)
+                SiteContent.IsPaneOpen = true;
         }
 
-        private async void Grid_Tapped_2(object sender, TappedRoutedEventArgs e)
+        private void SetBackButtonVisibility()
         {
-            var uri = new Uri(mainList[1].Link);
-            await Windows.System.Launcher.LaunchUriAsync(uri);
+            if (Window.Current.Bounds.Width < 1045)
+                BackButton.Visibility = Visibility.Visible;
+            else
+            {
+                BackButton.Visibility = Visibility.Collapsed;
+            }
+
         }
 
-        private async void Grid_Tapped_3(object sender, TappedRoutedEventArgs e)
+        private void SetNavigationPaneVisibility()
         {
-            var uri = new Uri(mainList[2].Link);
-            await Windows.System.Launcher.LaunchUriAsync(uri);
+            if (Window.Current.Bounds.Width < 1045)
+                SiteContent.IsPaneOpen = false;
+            else
+            {
+                SiteContent.IsPaneOpen = true;
+            }
         }
     }
 }

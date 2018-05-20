@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
 
-namespace MDAN_App_Base
+namespace MDAN.Base
 {
     [DataContract]
     public class User
@@ -59,7 +59,7 @@ namespace MDAN_App_Base
             if (Cats.Count != 0)
             {
                 var i = 0;
-                
+
                 var uribuilder = new StringBuilder();
                 uribuilder.Append("http://bt.mdan.org/rss_app.php?cats=");
                 while (i <= Cats.Count - 1)
@@ -113,7 +113,7 @@ namespace MDAN_App_Base
                 try
                 {
                     var root = JArray.Parse(x);
-                    
+
                     if (!int.TryParse(root[0].ToString(), out int k))
                     {
                         return false;

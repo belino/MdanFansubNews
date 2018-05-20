@@ -131,6 +131,9 @@
     <Compile Include="Site.xaml.cs">
       <DependentUpon>Site.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SiteNewsContent.xaml.cs">
+      <DependentUpon>SiteNewsContent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tracker.xaml.cs">
       <DependentUpon>Tracker.xaml</DependentUpon>
     </Compile>
@@ -197,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Site.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SiteNewsContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

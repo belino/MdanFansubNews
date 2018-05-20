@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Navigation;
 using Mdan.Background;
 using Windows.UI.Notifications;
 using System.Diagnostics;
+using MDAN.Base;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409

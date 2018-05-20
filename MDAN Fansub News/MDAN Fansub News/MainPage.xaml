@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
 
-            <SplitView x:Name="menu" OpenPaneLength="250"   DisplayMode="CompactOverlay" PaneBackground="#FF3482FA" >
+            <SplitView x:Name="menu" OpenPaneLength="350"   DisplayMode="Overlay" PaneBackground="#FF3482FA" >
 
                 <SplitView.Pane>
 

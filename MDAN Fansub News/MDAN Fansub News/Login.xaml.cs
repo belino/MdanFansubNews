@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
+using MDAN.Base;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
