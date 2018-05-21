@@ -30,3 +30,6 @@
 /MDAN Fansub News/Mdan.Background/Backup/obj
 /MDAN Fansub News/packages/Newtonsoft.Json.11.0.2
 *.dtbcache
+/MDAN Fansub News/Mdan.Fansub.UnitTests/obj/Release
+/MDAN Fansub News/Mdan.Fansub.UnitTests/obj/Debug
+/MDAN Fansub News/Mdan.Fansub.UnitTests/bin/Debug

@@ -10,6 +10,7 @@ C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTest
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\bin\Debug\nunit.framework.pdb
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\bin\Debug\nunit.framework.xml
+C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\obj\Debug\Mdan.Fansub.UnitTests.csprojAssemblyReference.cache
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\obj\Debug\Mdan.Fansub.UnitTests.csproj.CoreCompileInputs.cache
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\obj\Debug\Mdan.Fansub.UnitTests.csproj.CopyComplete
 C:\Users\emp_b\source\repos\MdanFansubNews\MDAN Fansub News\Mdan.Fansub.UnitTests\obj\Debug\Mdan.Fansub.UnitTests.dll
