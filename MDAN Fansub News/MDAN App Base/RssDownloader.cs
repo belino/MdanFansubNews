@@ -8,7 +8,8 @@ namespace MDAN.Base
 {
     public class RssDownloader
     {
-        public async Task<string> DownloadRssStringAsync()
+        private readonly User _user = User.Instance;
+        public async Task<string> DownloadRssSiteStringAsync()
         {
             var wc = new System.Net.Http.HttpClient();
             var rssContent = string.Empty;
@@ -21,6 +22,28 @@ namespace MDAN.Base
                 throw ex;
             }
             
+        }
+
+        public async Task<string> DownloadRssTrackerStringAsync()
+        {
+            //HttpWebRequest wc = (HttpWebRequest)WebRequest.Create(_user.TrackerUri);
+
+            //wc.ContentType = "text/xml;";
+            //wc.Accept = "text/xml";
+            //wc.Method = "GET";
+            //wc.UseDefaultCredentials = true;
+            //var error = false;
+            var wc = new System.Net.Http.HttpClient();
+            var rssContent = string.Empty;
+            try
+            {
+                return rssContent = await wc.GetStringAsync(_user.TrackerUri);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

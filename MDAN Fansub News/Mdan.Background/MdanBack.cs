@@ -32,7 +32,7 @@ namespace Mdan.Background
             if (!(bool)ApplicationData.Current.LocalSettings.Values["Notifications"]) return;
             try
             {
-                var siteContent = new SiteRssContent();
+                var siteContent = new RssContentRetriever();
                 var result = await siteContent.GetSiteContent();
                 UpdateStatusAndTime(result.First());
             }

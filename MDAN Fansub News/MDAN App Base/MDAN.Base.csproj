@@ -41,7 +41,7 @@
     <Compile Include="RssDownloader.cs" />
     <Compile Include="RSSItem.cs" />
     <Compile Include="RssStringReader.cs" />
-    <Compile Include="SiteRssContent.cs" />
+    <Compile Include="RssContentRetriever.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

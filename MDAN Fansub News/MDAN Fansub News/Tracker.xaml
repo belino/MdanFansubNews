@@ -74,18 +74,18 @@
                                                 <ColumnDefinition Width="*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Column="0" VerticalAlignment="Center" >
-                                                <Image x:Name="image" Height="45" Source="{Binding Image1}" ></Image>
+                                                <Image x:Name="image" Height="45" Source="{Binding Image}" ></Image>
                                             </Grid>
                                             <Grid Grid.Column="1" VerticalAlignment="Center" >
-                                                <TextBlock x:Name="title" Text="{Binding Title1}" FontSize="18" FontWeight="Bold" TextWrapping="WrapWholeWords"></TextBlock>
+                                                <TextBlock x:Name="title" Text="{Binding Title}" FontSize="18" FontWeight="Bold" TextWrapping="WrapWholeWords"></TextBlock>
                                             </Grid>
                                         </Grid>
                                     </StackPanel>
                                 </Grid>
                                 <Grid Grid.Row="1">
                                     <StackPanel>
-                                        <TextBlock x:Name="desc" Text="{Binding Description1}" TextWrapping="Wrap" TextAlignment="Justify" TextTrimming="WordEllipsis" ></TextBlock>
-                                        <TextBlock x:Name="pubdate" Text="{Binding pubDate1}" TextWrapping="Wrap" FontSize="10" ></TextBlock>
+                                        <TextBlock x:Name="desc" Text="{Binding Description}" TextWrapping="Wrap" TextAlignment="Justify" TextTrimming="WordEllipsis" ></TextBlock>
+                                        <TextBlock x:Name="pubdate" Text="{Binding PubDate}" TextWrapping="Wrap" FontSize="10" ></TextBlock>
                                     </StackPanel>
                                 </Grid>
                             </Grid>

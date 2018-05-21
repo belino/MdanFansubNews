@@ -80,20 +80,30 @@ namespace MDAN_App_Base
 
         private async void GetContent()
         {
-            var siteContent = new SiteRssContent();
-            mainList = await siteContent.GetSiteContent();
-            listRss.ItemsSource = mainList;
-            writeJSONAsync(mainList.First().Title);
-            ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList.First().Title;
-            NewsTitle.Text = mainList[0].Title;
-            NewsPubDate.Text = mainList[0].PubDate;
-            var htmlString = $"<style>.content {{max - width: 500px;margin: auto;}}</ style >< body >< div class='content'> {mainList[0].NewsContent}</div></body>";
-            mainList[0].NewsContent = $"<html><body>{mainList[0].NewsContent}</body></html>";
-            HtmlContent.HTML = mainList[0].NewsContent;
+            try
+            {
+                var siteContent = new RssContentRetriever();
+                mainList = await siteContent.GetSiteContent();
+                listRss.ItemsSource = mainList;
+                writeJSONAsync(mainList.First().Title);
+                ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList.First().Title;
+                NewsTitle.Text = mainList[0].Title;
+                NewsPubDate.Text = mainList[0].PubDate;
+                var htmlString = $"<style>.content {{max - width: 500px;margin: auto;}}</ style >< body >< div class='content'> {mainList[0].NewsContent}</div></body>";
+                mainList[0].NewsContent = $"<html><body>{mainList[0].NewsContent}</body></html>";
+                HtmlContent.HTML = mainList[0].NewsContent;
 
-            NewsTitle.Text = mainList[0].Title;
+                NewsTitle.Text = mainList[0].Title;
 
-            SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[0].NewsContent);
+                SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[0].NewsContent);
+            }
+            catch (Exception ex)
+            {
+                var message = string.Format("Ocorreu um erro durante o acesso ao site. Tente mais tarde. Você pode reportar o erro ao Detona XD. Erro: {0}", ex.Message);
+                var dialog = new MessageDialog(message) { Title = "Erro" };
+                dialog.Commands.Add(new UICommand { Label = "OK", Id = 0 });
+                await dialog.ShowAsync();
+            }
         }
 
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
