@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
 
-            <SplitView x:Name="menu" OpenPaneLength="350"   DisplayMode="Overlay" PaneBackground="#FF3482FA" >
+            <SplitView x:Name="menu" OpenPaneLength="260" DisplayMode="Inline" IsPaneOpen="True" PaneBackground="#FF3482FA" >
 
                 <SplitView.Pane>
 
@@ -43,16 +43,16 @@
 
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="0">
-                                <Button x:Name="siteNews" FontFamily="Segoe MDL2 Assets" Content="&#xE128;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="home_Tapped"  />
+                                <Button x:Name="siteNews" FontFamily="Segoe MDL2 Assets" Content="&#xE128;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="Home_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="1" Grid.Column="1">
-                                <TextBlock Text="Novidades do Site" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="home_Tapped" />
+                                <TextBlock Text="Novidades do Site" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="Home_Tapped" />
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="0">
-                                <Button x:Name="trackerNews" FontFamily="Segoe MDL2 Assets" Content="&#xE170;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="tracker_Tapped"  />
+                                <Button x:Name="trackerNews" FontFamily="Segoe MDL2 Assets" Content="&#xE170;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="Tracker_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="2" Grid.Column="1">
-                                <TextBlock Text="Novidades do Tracker" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="tracker_Tapped" />
+                                <TextBlock Text="Novidades do Tracker" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="Tracker_Tapped" />
                             </Grid>
                             <!--<Grid Grid.Row="3" Grid.Column="0">
                                 <Button x:Name="chat" FontFamily="Segoe MDL2 Assets" Content="&#xE15F;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="chat_Tapped"  />
@@ -61,16 +61,16 @@
                                 <TextBlock Text="Chat" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="chat_Tapped" />
                             </Grid>-->
                             <Grid Grid.Row="4" Grid.Column="0">
-                                <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xE115;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="settings_Tapped"  />
+                                <Button x:Name="Settings" FontFamily="Segoe MDL2 Assets" Content="&#xE115;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="Settings_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="4" Grid.Column="1">
-                                <TextBlock Text="Settings" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="settings_Tapped" />
+                                <TextBlock Text="Settings" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="Settings_Tapped" />
                             </Grid>
                             <Grid Grid.Row="5" Grid.Column="0">
-                                <Button x:Name="About" FontFamily="Segoe MDL2 Assets" Content="&#xE11B;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="about_Tapped"  />
+                                <Button x:Name="About" FontFamily="Segoe MDL2 Assets" Content="&#xE11B;" FontSize="22" Foreground="White" Background="#FF3482FA" Tapped="About_Tapped"  />
                             </Grid>
                             <Grid Grid.Row="5" Grid.Column="1">
-                                <TextBlock Text="About" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="about_Tapped" />
+                                <TextBlock Text="About" Foreground="White" FontSize="20" Margin="10,0,0,0" Tapped="About_Tapped" />
                             </Grid>
                             <!--<Grid Grid.Row="6" Grid.Column="0">
                                 <Button x:Name="login" FontFamily="Segoe MDL2 Assets" Content="&#xE13D;" FontSize="20" Foreground="White" Background="#FF3482FA"  />
@@ -94,12 +94,36 @@
         </Grid>
         <Grid Grid.Row="0" Background="#FF1A4A93">
 
-            <Button x:Name="hamburgerButton" Height="50" Width="48"  FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Tapped="hamburgerButton_Tapped" FontSize="26.667" Foreground="White"  FontWeight="Bold"  />
+            <Button x:Name="hamburgerButton" Height="50" Width="48"  FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Tapped="HamburgerButton_Tapped" FontSize="26.667" Foreground="White"  FontWeight="Bold"  />
 
             <Image Source="/Images/mdanlogo1.png" Height="50"  HorizontalAlignment="Right" />
             <TextBlock Text="MDAN Fansub" FontSize="20" Foreground="White" FontWeight="Bold" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center"/>
 
         </Grid>
-
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="Phone">
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="360" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="menu.DisplayMode" Value="Overlay" />
+                        <Setter Target="menu.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="DesktopSmall">
+                <VisualState>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="menu.DisplayMode" Value="Overlay" />
+                        <Setter Target="menu.IsPaneOpen" Value="False" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
+
 </Page>

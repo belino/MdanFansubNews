@@ -9,6 +9,7 @@ using Mdan.Background;
 using Windows.UI.Notifications;
 using System.Diagnostics;
 using MDAN.Base;
+using Windows.UI.Xaml;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -40,7 +41,7 @@ namespace MDAN_App_Base
 
         }
 
-        private void hamburgerButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private void HamburgerButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             menu.IsPaneOpen = !menu.IsPaneOpen;
         }
@@ -74,12 +75,12 @@ namespace MDAN_App_Base
     protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             RestoreUser(_user);
-            ((Frame) menu.Content)?.Navigate(typeof(Site));
             while (Frame.CanGoBack)
             {
                 Frame.BackStack.Clear();
             }
             RegisterBackgroundTask();
+            ((Frame) menu.Content)?.Navigate(typeof(Site));
         }
 
         private static void RestoreUser(User user)
@@ -95,21 +96,21 @@ namespace MDAN_App_Base
                 user.TrackerUri = ApplicationData.Current.LocalSettings.Values["Tracker"].ToString();
         }
 
-        private void home_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Home_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)menu.Content)?.Navigate(typeof(Site));
             if(menu.IsPaneOpen)
             menu.IsPaneOpen = !menu.IsPaneOpen;
         }
 
-        private void chat_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Chat_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)menu.Content)?.Navigate(typeof(Chat));
             if (menu.IsPaneOpen)
                 menu.IsPaneOpen = !menu.IsPaneOpen;
         }
 
-        private void tracker_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Tracker_Tapped(object sender, TappedRoutedEventArgs e)
         {
 
             ((Frame)menu.Content)?.Navigate(typeof(Tracker));
@@ -117,14 +118,14 @@ namespace MDAN_App_Base
                 menu.IsPaneOpen = !menu.IsPaneOpen;
         }
 
-        private void settings_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Settings_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)menu.Content)?.Navigate(typeof(Settings));
             if (menu.IsPaneOpen)
                 menu.IsPaneOpen = !menu.IsPaneOpen;
         }
 
-        private void about_Tapped(object sender, TappedRoutedEventArgs e)
+        private void About_Tapped(object sender, TappedRoutedEventArgs e)
         {
             ((Frame)menu.Content)?.Navigate(typeof(About));
             if (menu.IsPaneOpen)

@@ -11,7 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdan.Background", "Mdan.Bac
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mdan.Fansub.UnitTests", "Mdan.Fansub.UnitTests\Mdan.Fansub.UnitTests.csproj", "{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDAN.Android.Android", "MDAN.Android\MDAN.Android.Android\MDAN.Android.Android.csproj", "{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "MDAN.Android", "MDAN.Android\MDAN.Android\MDAN.Android.shproj", "{B1603FBB-08F9-405D-9420-F04FA2A1802B}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		MDAN.Android\MDAN.Android\MDAN.Android.projitems*{5f4824f8-879d-4a60-8af7-198fcf7f8dde}*SharedItemsImports = 4
+		MDAN.Android\MDAN.Android\MDAN.Android.projitems*{b1603fbb-08f9-405d-9420-f04fa2a1802b}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -93,6 +101,30 @@ Global
 		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x64.Build.0 = Release|Any CPU
 		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x86.ActiveCfg = Release|Any CPU
 		{5B4EABE9-98E5-4BF8-8DB8-2E3DD16E3C5D}.Release|x86.Build.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|ARM.Deploy.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x64.Build.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x64.Deploy.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x86.Build.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|ARM.Build.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|ARM.Deploy.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x64.ActiveCfg = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x64.Build.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x64.Deploy.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x86.ActiveCfg = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x86.Build.0 = Release|Any CPU
+		{5F4824F8-879D-4A60-8AF7-198FCF7F8DDE}.Release|x86.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

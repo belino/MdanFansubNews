@@ -17,10 +17,10 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>MDAN Fansub News_StoreKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>MDAN.Fansub.News_TemporaryKey.pfx</PackageCertificateKeyFile>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>AF533B90C4A43519A6E75F01DB567F320D625037</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>037C4AC87F4E17DCE65EE1CC0D08CD24713FF638</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
     <RuntimeIdentifiers>win10-arm;win10-arm-aot;win10-x86;win10-x86-aot;win10-x64;win10-x64-aot</RuntimeIdentifiers>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
@@ -159,6 +159,7 @@
     <Content Include="Images\ost.jpg" />
     <Content Include="Images\ova.jpg" />
     <Content Include="Images\serie.jpg" />
+    <None Include="MDAN.Fansub.News_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
@@ -238,17 +239,8 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.ApplicationInsights">
-      <Version>2.6.2</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.PersistenceChannel">
-      <Version>2.0.0-beta3</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.ApplicationInsights.WindowsApps">
-      <Version>1.1.1</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.1.4</Version>
+      <Version>6.1.5</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>11.0.2</Version>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MDAN.Base;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace MDAN_App_Base
     /// </summary>
     public sealed partial class SiteNewsContent : Page
     {
+        private RSSItem _newsItem;
         public SiteNewsContent()
         {
             this.InitializeComponent();
@@ -30,12 +32,21 @@ namespace MDAN_App_Base
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            _newsItem = e.Parameter as RSSItem;
+            NewsTitle.Text = _newsItem.Title;
+            NewsPubDate.Text = _newsItem.PubDate;
 
-            var htmlContent = (string)e.Parameter;
+            NewsTitle.Text = _newsItem.Title;
 
-            Content.NavigateToString(htmlContent);
+            Content.NavigateToString(_newsItem.NewsContent);
 
 
+        }
+
+        private void BackButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (!Frame.CanGoBack) return;
+            Frame.GoBack();
         }
     }
 }

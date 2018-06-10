@@ -43,23 +43,41 @@ namespace MDAN_App_Base
             SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
             SystemNavigationManager.GetForCurrentView().BackRequested += (s, a) =>
         {
-            if (!Frame.CanGoBack) return;
-            Frame.GoBack();
-            a.Handled = true;
+            if (ContentGrid.Visibility == Visibility.Visible)
+            {
+                if (!SiteNewsContent.CanGoBack) return;
+                SiteNewsContent.GoBack();
+                a.Handled = true;
+            }
+            else
+            {
+                if (!Frame.CanGoBack) return;
+                Frame.GoBack();
+                a.Handled = true;
+            }
         };
 
             if (ApiInformation.IsApiContractPresent("Windows.Phone.PhoneContract", 1, 0))
             {
                 Windows.Phone.UI.Input.HardwareButtons.BackPressed += (s, a) =>
                 {
-                    if (!Frame.CanGoBack) return;
-                    Frame.GoBack();
-                    a.Handled = true;
+                    if (ContentGrid.Visibility == Visibility.Visible)
+                    {
+                        if (!SiteNewsContent.CanGoBack) return;
+                        SiteNewsContent.GoBack();
+                        a.Handled = true;
+                    }
+                    else
+                    {
+                        if (!Frame.CanGoBack) return;
+                        Frame.GoBack();
+                        a.Handled = true;
+                    }
                 };
             }
         }
 
-        private async void writeJSONAsync(string deb)
+        private async void WriteJSONAsync(string deb)
         {
 
             var serializer = new DataContractJsonSerializer(typeof(string));
@@ -75,7 +93,6 @@ namespace MDAN_App_Base
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             GetContent();
-
         }
 
         private async void GetContent()
@@ -85,17 +102,16 @@ namespace MDAN_App_Base
                 var siteContent = new RssContentRetriever();
                 mainList = await siteContent.GetSiteContent();
                 listRss.ItemsSource = mainList;
-                writeJSONAsync(mainList.First().Title);
+                WriteJSONAsync(mainList.First().Title);
                 ApplicationData.Current.LocalSettings.Values["LastUp"] = mainList.First().Title;
-                NewsTitle.Text = mainList[0].Title;
-                NewsPubDate.Text = mainList[0].PubDate;
-                var htmlString = $"<style>.content {{max - width: 500px;margin: auto;}}</ style >< body >< div class='content'> {mainList[0].NewsContent}</div></body>";
-                mainList[0].NewsContent = $"<html><body>{mainList[0].NewsContent}</body></html>";
-                HtmlContent.HTML = mainList[0].NewsContent;
+                if (ContentGrid.Visibility == Visibility.Visible)
+                {
+                    var htmlString = $"<style>.content {{max - width: 500px;margin: auto;}}</ style >< body >< div class='content'> {mainList[0].NewsContent}</div></body>";
+                    mainList[0].NewsContent = $"<html><body>{mainList[0].NewsContent}</body></html>";
+                    HtmlContent.HTML = mainList[0].NewsContent;
 
-                NewsTitle.Text = mainList[0].Title;
-
-                SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[0].NewsContent);
+                    SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList.First());
+                }
             }
             catch (Exception ex)
             {
@@ -109,42 +125,11 @@ namespace MDAN_App_Base
         private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
         {
             int index = listRss.SelectedIndex;
-            NewsTitle.Text = mainList[index].Title;
-            NewsPubDate.Text = mainList[index].PubDate;
-            mainList[index].NewsContent = $"<html><body>{mainList[index].NewsContent}</body></html>";
-            HtmlContent.HTML = mainList[index].NewsContent;
 
-            NewsTitle.Text = mainList[index].Title;
-            SetNavigationPaneVisibility();
-            SetBackButtonVisibility();
-            SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[index].NewsContent);
-        }
-
-        private void BackButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (Window.Current.Bounds.Width < 1045)
-                SiteContent.IsPaneOpen = true;
-        }
-
-        private void SetBackButtonVisibility()
-        {
-            if (Window.Current.Bounds.Width < 1045)
-                BackButton.Visibility = Visibility.Visible;
+            if (ContentGrid.Visibility == Visibility.Visible)
+                SiteNewsContent.Navigate(typeof(SiteNewsContent), mainList[index]);
             else
-            {
-                BackButton.Visibility = Visibility.Collapsed;
-            }
-
-        }
-
-        private void SetNavigationPaneVisibility()
-        {
-            if (Window.Current.Bounds.Width < 1045)
-                SiteContent.IsPaneOpen = false;
-            else
-            {
-                SiteContent.IsPaneOpen = true;
-            }
+                Frame.Navigate(typeof(SiteNewsContent), mainList[index]);
         }
     }
 }
