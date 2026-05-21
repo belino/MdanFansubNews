@@ -80,7 +80,7 @@
                Padding="15,10" 
                HasShadow="True">
             <Button x:Name="OpenBrowserButton"
-                    Text="Abrir no Navegador para Download"
+                    Text="Ver no Navegador"
                     Clicked="OnOpenBrowserClicked"
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
