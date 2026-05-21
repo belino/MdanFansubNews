@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -37,3 +37,9 @@
 /MDAN Fansub News/MDAN.Android/MDAN.Android.Android/obj/Debug
 /MDAN Fansub News/MDAN.Android/MDAN.Android.Android/obj/Release
 /MDAN Fansub News/packages/MSTest.TestFramework.1.3.2/lib
+
+## JetBrains Rider / IntelliJ IDEA
+.idea/
+*.idea/
+*.sln.iml
+*.deployproj
