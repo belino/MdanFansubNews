@@ -1,45 +1,29 @@
-################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/MDAN Fansub News/MDAN App Base/bin
-/MDAN Fansub News/MDAN App Base/obj
-/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.19.0_Test
-/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.20.0_Test
-/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test/Add-AppDevPackage.resources
-/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test/Dependencies
-/MDAN Fansub News/MDAN Fansub News/AppPackages/MDAN Fansub News_2.4.21.0_Test
-/MDAN Fansub News/MDAN Fansub News/AppPackages
-/MDAN Fansub News/MDAN Fansub News/bin
-/MDAN Fansub News/MDAN Fansub News/BundleArtifacts
-/MDAN Fansub News/MDAN Fansub News/obj
-/MDAN Fansub News/Mdan.Background/bin
-/MDAN Fansub News/Mdan.Background/obj
-/MDAN Fansub News/MDANBack/bin
-/MDAN Fansub News/MDANBack/obj
-/MDAN Fansub News/packages/Newtonsoft.Json.10.0.2
-/MDAN Revamp/MDAN Revamp/AppPackages
-/MDAN Revamp/MDAN Revamp/bin
-/MDAN Revamp/MDAN Revamp/obj
-/MDAN Revamp/MDANBack/obj
-/MDAN Revamp/MDANBack/bin
-/MDAN Revamp/packages/NotificationsExtensions.UniversalApps.1.0.3
-/MDAN Revamp/MDAN Revamp/BundleArtifacts
-/.vs
-/MDAN Fansub News/.vs/MDAN Fansub News/v15/Server/sqlite3
-/MDAN Fansub News/Mdan.Background/Backup/obj
-/MDAN Fansub News/packages/Newtonsoft.Json.11.0.2
+## Build outputs (bin/obj/out)
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+build_output.txt
 *.dtbcache
-/MDAN Fansub News/Mdan.Fansub.UnitTests/obj/Release
-/MDAN Fansub News/Mdan.Fansub.UnitTests/obj/Debug
-/MDAN Fansub News/Mdan.Fansub.UnitTests/bin/Debug
-/MDAN Fansub News/MDAN.Android/MDAN.Android.Android/bin/Debug
-/MDAN Fansub News/MDAN.Android/MDAN.Android.Android/obj/Debug
-/MDAN Fansub News/MDAN.Android/MDAN.Android.Android/obj/Release
-/MDAN Fansub News/packages/MSTest.TestFramework.1.3.2/lib
 
-## JetBrains Rider / IntelliJ IDEA
+## IDEs & Editors
 .idea/
 *.idea/
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.sln.docstates
 *.sln.iml
 *.deployproj
+
+## Packages & Publishing
+packages/
+AppPackages/
+BundleArtifacts/
+PublishProfiles/
+
+## OS-specific files
+.DS_Store
+Thumbs.db
