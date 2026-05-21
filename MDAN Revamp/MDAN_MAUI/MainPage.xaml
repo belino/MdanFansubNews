@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:MDAN_MAUI.Models"
+             x:Class="MDAN_MAUI.MainPage"
+             Title="MDAN Lançamentos"
+             BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
+
+    <Grid RowDefinitions="Auto, *">
+        
+        <!-- Premium Header Bar -->
+        <Frame Grid.Row="0" 
+               BackgroundColor="{StaticResource Primary}" 
+               BorderColor="Transparent" 
+               CornerRadius="0" 
+               Padding="15,10" 
+               HasShadow="True">
+            <Grid ColumnDefinitions="*, Auto">
+                <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                    <!-- MDAN Logo -->
+                    <Image Source="mdanlogo.png" WidthRequest="30" HeightRequest="30" VerticalOptions="Center"/>
+                    <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="MDAN Fansub" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                        <Label Text="Lançamentos Recentes" FontSize="10" TextColor="#D1FAE5"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+                
+                <!-- Manual refresh indicator / connection state -->
+                <Button Grid.Column="1" 
+                        Text="↻" 
+                        Clicked="OnRefreshClicked"
+                        TextColor="White"
+                        BackgroundColor="#30FFFFFF"
+                        CornerRadius="18"
+                        WidthRequest="36"
+                        HeightRequest="36"
+                        Padding="0"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        VerticalOptions="Center"/>
+            </Grid>
+        </Frame>
+
+        <!-- Main RefreshView -->
+        <RefreshView x:Name="FeedRefreshView" 
+                     Grid.Row="1" 
+                     Command="{Binding RefreshCommand}"
+                     RefreshColor="{StaticResource Primary}">
+            
+            <CollectionView x:Name="FeedCollectionView" 
+                            SelectionMode="None"
+                            Margin="0,0,0,15">
+                
+                <!-- CollectionView Header containing Carousel & Filters -->
+                <CollectionView.Header>
+                    <VerticalStackLayout Spacing="15" Margin="0,0,0,10">
+                        
+                        <!-- Section: Destaques (Featured Carousel) -->
+                        <Label Text="Destaques" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               Margin="15,15,15,5"/>
+                        
+                        <Grid RowDefinitions="Auto, Auto">
+                            <CarouselView x:Name="FeaturedCarousel"
+                                          HeightRequest="200"
+                                          PeekAreaInsets="20"
+                                          PositionChanged="OnFeaturedPositionChanged">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate x:DataType="models:RSSItem">
+                                        <Grid Padding="8">
+                                            <Frame CornerRadius="12" 
+                                                   Padding="0" 
+                                                   BorderColor="Transparent" 
+                                                   HasShadow="True"
+                                                   IsClippedToBounds="True">
+                                                <Grid>
+                                                    <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
+                                                    <BoxView Color="Black" Opacity="0.4" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                                                    
+                                                    <!-- Tap Gesture to open detail -->
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnFeaturedTapped" CommandParameter="{Binding .}"/>
+                                                    </Grid.GestureRecognizers>
+                                                    
+                                                    <!-- Featured item metadata -->
+                                                    <VerticalStackLayout VerticalOptions="End" Padding="15" Spacing="5">
+                                                        <Frame BackgroundColor="#80EF4444" BorderColor="Transparent" CornerRadius="8" Padding="6,2" HorizontalOptions="Start">
+                                                            <Label Text="NOVO" FontSize="9" FontAttributes="Bold" TextColor="White"/>
+                                                        </Frame>
+                                                        <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" TextColor="White" LineBreakMode="TailTruncation" MaxLines="2"/>
+                                                    </VerticalStackLayout>
+                                                </Grid>
+                                            </Frame>
+                                        </Grid>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            
+                            <!-- Carousel Indicator -->
+                            <IndicatorView x:Name="CarouselIndicator"
+                                           Grid.Row="1"
+                                           HorizontalOptions="Center"
+                                           Margin="0,5,0,0"
+                                           IndicatorColor="{StaticResource Gray300}"
+                                           SelectedIndicatorColor="{StaticResource Primary}"/>
+                        </Grid>
+
+                        <!-- Search Bar -->
+                        <Frame Margin="15,5" 
+                               Padding="10,0" 
+                               CornerRadius="10" 
+                               BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray900}}"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+                            <Grid ColumnDefinitions="Auto, *">
+                                <Label Text="🔍" VerticalOptions="Center" Margin="5,0"/>
+                                <Entry x:Name="SearchEntry" 
+                                       Grid.Column="1" 
+                                       Placeholder="Buscar lançamentos..." 
+                                       TextChanged="OnSearchTextChanged"
+                                       TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                       PlaceholderColor="{StaticResource Gray500}"
+                                       VerticalOptions="Center"
+                                       HeightRequest="40"/>
+                            </Grid>
+                        </Frame>
+
+                        <!-- Category Filter Chips -->
+                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,5">
+                            <HorizontalStackLayout Spacing="10" Padding="15,0">
+                                <Button x:Name="ChipAll" Text="Todos" Clicked="OnFilterChipClicked" CommandParameter="Todos" BackgroundColor="{StaticResource Primary}" TextColor="White" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                                <Button x:Name="ChipManga" Text="Manga" Clicked="OnFilterChipClicked" CommandParameter="Manga" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                                <Button x:Name="ChipSerie" Text="Série" Clicked="OnFilterChipClicked" CommandParameter="Série" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                                <Button x:Name="ChipOst" Text="OST" Clicked="OnFilterChipClicked" CommandParameter="OST" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                                <Button x:Name="ChipFilme" Text="Filmes" Clicked="OnFilterChipClicked" CommandParameter="Filme" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                                <Button x:Name="ChipOva" Text="OVA" Clicked="OnFilterChipClicked" CommandParameter="OVA" BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" CornerRadius="15" Padding="12,2" HeightRequest="32"/>
+                            </HorizontalStackLayout>
+                        </ScrollView>
+
+                        <!-- Section: Todos os Posts -->
+                        <Label Text="Todos os Lançamentos" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                               Margin="15,10,15,0"/>
+                    </VerticalStackLayout>
+                </CollectionView.Header>
+
+                <!-- CollectionView Item Template: Modern Feed Card -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:RSSItem">
+                        <Grid Padding="15,8">
+                            <Frame CornerRadius="10" 
+                                   Padding="10" 
+                                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" 
+                                   BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
+                                   HasShadow="True">
+                                
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnFeedItemTapped" CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+
+                                <Grid ColumnDefinitions="100, *" ColumnSpacing="12">
+                                    
+                                    <!-- Left Column: Thumbnail Image -->
+                                    <Frame Grid.Column="0" 
+                                           CornerRadius="8" 
+                                           Padding="0" 
+                                           BorderColor="Transparent" 
+                                           HeightRequest="85"
+                                           WidthRequest="100"
+                                           IsClippedToBounds="True">
+                                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
+                                    </Frame>
+
+                                    <!-- Right Column: Texts -->
+                                    <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto" RowSpacing="2">
+                                        
+                                        <!-- Title -->
+                                        <Label Grid.Row="0" 
+                                               Text="{Binding Title}" 
+                                               FontSize="14" 
+                                               FontAttributes="Bold" 
+                                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"/>
+                                        
+                                        <!-- Brief Description -->
+                                        <Label Grid.Row="1" 
+                                               Text="{Binding Description}" 
+                                               FontSize="11" 
+                                               TextColor="{StaticResource Gray500}" 
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="2"/>
+
+                                        <!-- Footer details -->
+                                        <Grid Grid.Row="2" ColumnDefinitions="Auto, *">
+                                            <Label Grid.Column="0" 
+                                                   Text="{Binding Category}" 
+                                                   FontSize="9" 
+                                                   FontAttributes="Bold" 
+                                                   TextColor="{StaticResource Primary}"/>
+                                            <Label Grid.Column="1" 
+                                                   Text="{Binding PubDate}" 
+                                                   FontSize="9" 
+                                                   TextColor="{StaticResource Gray500}" 
+                                                   HorizontalOptions="End"/>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!-- Empty State View -->
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout Spacing="15" Padding="40" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="📭" FontSize="48" HorizontalOptions="Center"/>
+                        <Label Text="Nenhum lançamento encontrado." FontSize="16" FontAttributes="Bold" TextColor="{StaticResource Gray500}" HorizontalOptions="Center"/>
+                        <Label Text="Verifique sua conexão ou tente buscar outro termo." FontSize="12" TextColor="{StaticResource Gray500}" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>
