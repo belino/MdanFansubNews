@@ -1,0 +1,44 @@
+name: Build and Test MDAN MAUI
+
+on:
+  push:
+    branches: [ "main", "feature/*" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build MAUI Application
+    runs-on: macos-15  # macOS 15 runner contains latest Xcode versions required for iOS/MacCatalyst
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    - name: Setup Java (for Android build)
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+
+    - name: Install MAUI Workload
+      run: |
+        dotnet workload install maui
+
+    - name: Restore dependencies
+      run: |
+        dotnet restore "MDAN Revamp/MDAN_MAUI/MDAN_MAUI.csproj"
+
+    - name: Build Android
+      # We override JavaSdkDirectory to match the runner's JDK path configured by setup-java ($JAVA_HOME)
+      run: |
+        dotnet build "MDAN Revamp/MDAN_MAUI/MDAN_MAUI.csproj" -c Debug -f net10.0-android36.1 -p:JavaSdkDirectory="$JAVA_HOME"
+
+    - name: Build MacCatalyst
+      run: |
+        dotnet build "MDAN Revamp/MDAN_MAUI/MDAN_MAUI.csproj" -c Debug -f net10.0-maccatalyst -p:ValidateXcodeVersion=false
