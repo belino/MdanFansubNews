@@ -31,7 +31,7 @@
 		<ApplicationTitle>MDAN_MAUI</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.mdan_maui</ApplicationId>
+		<ApplicationId>com.MDANFansubNews</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -49,7 +49,7 @@
 		<!-- Bypass Xcode version requirements that may be newer than current .NET MAUI SDK supports -->
 		<ValidateXcodeVersion>false</ValidateXcodeVersion>
 		<!-- Explicitly set JDK path to bypass Rider's cached/wrong JDK path -->
-		<JavaSdkDirectory>/Library/Java/JavaVirtualMachines/jdk-26.jdk/Contents/Home</JavaSdkDirectory>
+		<JavaSdkDirectory>/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home</JavaSdkDirectory>
 	</PropertyGroup>
 
 	<ItemGroup>
