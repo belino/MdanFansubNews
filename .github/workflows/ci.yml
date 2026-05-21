@@ -41,4 +41,5 @@ jobs:
 
     - name: Build MacCatalyst
       run: |
-        dotnet build "MDAN Revamp/MDAN_MAUI/MDAN_MAUI.csproj" -c Debug -f net10.0-maccatalyst -p:ValidateXcodeVersion=false
+        dotnet build "MDAN Revamp/MDAN_MAUI/MDAN_MAUI.csproj" -c Debug -f net10.0-maccatalyst -p:ValidateXcodeVersion=false -p:MtouchLink=SdkOnly
+
