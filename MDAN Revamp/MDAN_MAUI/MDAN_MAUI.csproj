@@ -28,7 +28,7 @@
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
 		<!-- Display name -->
-		<ApplicationTitle>MDAN_MAUI</ApplicationTitle>
+		<ApplicationTitle>MDAN Fansub News</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.MDANFansubNews</ApplicationId>
