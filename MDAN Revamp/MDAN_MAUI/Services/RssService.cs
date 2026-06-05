@@ -55,13 +55,15 @@ namespace MDAN_MAUI.Services
                         pubDate = pubDate.Substring(0, 22);
                     }
 
-                    // Extract first image from description or content:encoded
-                    var xmlContent = item.ToString();
-                    var imageUrls = GetImagesInHtmlString(xmlContent);
-                    var imageUrl = imageUrls.FirstOrDefault() ?? "https://picsum.photos/id/1025/600/400"; // Fallback image
-
                     // Category extraction
                     var category = item.Elements("category").FirstOrDefault()?.Value ?? DetectCategory(title);
+                    
+                    // Extract first image from description or content:encoded
+                    var xmlContent = item.ToString();
+                    var imageUrl = GetImagesInHtmlString(xmlContent)
+                        .Select(NormalizeImageUrl)
+                        .FirstOrDefault(url => !string.IsNullOrWhiteSpace(url))
+                        ?? GetFallbackImageForCategory(category);
 
                     return new RSSItem
                     {
@@ -108,8 +110,8 @@ namespace MDAN_MAUI.Services
             var images = new List<string>();
             if (string.IsNullOrEmpty(htmlString)) return images;
 
-            // Search for standard img tags
-            var imgRegex = new Regex(@"<img[^>]+src=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
+            // Search for standard and lazy-loaded image attributes.
+            var imgRegex = new Regex(@"<img[^>]+(?:src|data-src|data-lazy-src)=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
             var matches = imgRegex.Matches(htmlString);
             foreach (Match match in matches)
             {
@@ -128,6 +130,47 @@ namespace MDAN_MAUI.Services
             }
 
             return images;
+        }
+
+        private static string? NormalizeImageUrl(string imageUrl)
+        {
+            if (string.IsNullOrWhiteSpace(imageUrl)) return null;
+
+            var decodedUrl = System.Net.WebUtility.HtmlDecode(imageUrl).Trim().Trim('"', '\'', '>', '<');
+            var queryIndex = decodedUrl.IndexOfAny(new[] { '"', '\'', '<', ' ', '\r', '\n', '\t' });
+            if (queryIndex >= 0)
+            {
+                decodedUrl = decodedUrl.Substring(0, queryIndex);
+            }
+
+            if (decodedUrl.StartsWith("//", StringComparison.Ordinal))
+            {
+                return $"https:{decodedUrl}";
+            }
+
+            if (Uri.TryCreate(decodedUrl, UriKind.Absolute, out var absoluteUri))
+            {
+                return absoluteUri.Scheme == Uri.UriSchemeHttp || absoluteUri.Scheme == Uri.UriSchemeHttps
+                    ? absoluteUri.ToString()
+                    : null;
+            }
+
+            return Uri.TryCreate(new Uri("https://www.mdan.org/"), decodedUrl, out var relativeUri)
+                ? relativeUri.ToString()
+                : null;
+        }
+
+        private static string GetFallbackImageForCategory(string category)
+        {
+            return category.ToLowerInvariant() switch
+            {
+                "manga" or "mangás" or "mangá" => "manga",
+                "série" or "serie" or "séries" => "serie",
+                "ost" or "osts" => "ost",
+                "filme" or "filmes" or "movie" => "movie",
+                "ova" or "ovas" => "ova",
+                _ => "mdanlogo"
+            };
         }
 
         public List<RSSItem> GetMockItems()

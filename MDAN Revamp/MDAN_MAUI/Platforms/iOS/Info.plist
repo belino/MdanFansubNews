@@ -32,5 +32,9 @@
 	<array>
 		<string>fetch</string>
 	</array>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-4484872581755769~1790864472</string>
+	<key>GADIsAdManagerApp</key>
+	<true/>
 </dict>
 </plist>

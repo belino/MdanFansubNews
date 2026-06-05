@@ -34,6 +34,7 @@ namespace MDAN_MAUI
             if (!_allItems.Any())
             {
                 FeedRefreshView.IsRefreshing = true;
+                await LoadFeedAsync();
             }
         }
 

@@ -2,6 +2,7 @@ using Foundation;
 using UIKit;
 using System;
 using Plugin.LocalNotification;
+using Plugin.LocalNotification.Core.Models;
 using Microsoft.Maui.Storage;
 
 namespace MDAN_MAUI;

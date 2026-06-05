@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Logging;
 using Plugin.LocalNotification;
+using Plugin.AdMob;
 using MDAN_MAUI.Services;
 
 namespace MDAN_MAUI;
@@ -12,6 +13,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseLocalNotification()
+			.UseAdMob()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

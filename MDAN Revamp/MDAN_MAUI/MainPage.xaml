@@ -2,19 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:MDAN_MAUI.Models"
+             xmlns:admob="clr-namespace:Plugin.AdMob;assembly=Plugin.AdMob"
+             xmlns:local="clr-namespace:MDAN_MAUI"
              x:Class="MDAN_MAUI.MainPage"
              Title="MDAN Lançamentos"
              BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray950}}">
 
-    <Grid RowDefinitions="Auto, *">
+    <Grid RowDefinitions="Auto, *, Auto">
         
         <!-- Premium Header Bar -->
-        <Frame Grid.Row="0" 
-               BackgroundColor="{StaticResource Primary}" 
-               BorderColor="Transparent" 
-               CornerRadius="0" 
-               Padding="15,10" 
-               HasShadow="True">
+        <Border Grid.Row="0" 
+                Background="{StaticResource Primary}" 
+                StrokeThickness="0"
+                Padding="15,10">
+            <Border.Shadow>
+                <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.15" />
+            </Border.Shadow>
             <Grid ColumnDefinitions="*, Auto">
                 <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
                     <!-- MDAN Logo -->
@@ -39,7 +42,7 @@
                         FontSize="16"
                         VerticalOptions="Center"/>
             </Grid>
-        </Frame>
+        </Border>
 
         <!-- Main RefreshView -->
         <RefreshView x:Name="FeedRefreshView" 
@@ -65,19 +68,27 @@
                         <Grid RowDefinitions="Auto, Auto">
                             <CarouselView x:Name="FeaturedCarousel"
                                           HeightRequest="200"
-                                          PeekAreaInsets="20"
+                                          PeekAreaInsets="{OnPlatform Android=0, Default=20}"
+                                          IndicatorView="CarouselIndicator"
                                           PositionChanged="OnFeaturedPositionChanged">
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate x:DataType="models:RSSItem">
                                         <Grid Padding="8">
-                                            <Frame CornerRadius="12" 
-                                                   Padding="0" 
-                                                   BorderColor="Transparent" 
-                                                   HasShadow="True"
-                                                   IsClippedToBounds="True">
-                                                <Grid>
-                                                    <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
-                                                    <BoxView Color="Black" Opacity="0.4" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+                                            <Border StrokeShape="RoundRectangle 12" 
+                                                    Padding="0" 
+                                                    StrokeThickness="0"
+                                                    Background="Transparent"
+                                                    HeightRequest="184">
+                                                <Border.Shadow>
+                                                    <Shadow Brush="Black" Offset="0,2" Radius="5" Opacity="0.15" />
+                                                </Border.Shadow>
+                                                <Grid HeightRequest="184">
+                                                    <Image Source="{Binding ImageUrl}" 
+                                                           Aspect="AspectFill"
+                                                           HeightRequest="184"
+                                                           HorizontalOptions="Fill"
+                                                           VerticalOptions="Fill"/>
+                                                    <BoxView Style="{x:Null}" Color="Transparent" BackgroundColor="#66000000" VerticalOptions="Fill" HorizontalOptions="Fill"/>
                                                     
                                                     <!-- Tap Gesture to open detail -->
                                                     <Grid.GestureRecognizers>
@@ -86,13 +97,13 @@
                                                     
                                                     <!-- Featured item metadata -->
                                                     <VerticalStackLayout VerticalOptions="End" Padding="15" Spacing="5">
-                                                        <Frame BackgroundColor="#80EF4444" BorderColor="Transparent" CornerRadius="8" Padding="6,2" HorizontalOptions="Start">
+                                                        <Border Background="#80EF4444" StrokeThickness="0" StrokeShape="RoundRectangle 8" Padding="6,2" HorizontalOptions="Start">
                                                             <Label Text="NOVO" FontSize="9" FontAttributes="Bold" TextColor="White"/>
-                                                        </Frame>
+                                                        </Border>
                                                         <Label Text="{Binding Title}" FontSize="16" FontAttributes="Bold" TextColor="White" LineBreakMode="TailTruncation" MaxLines="2"/>
                                                     </VerticalStackLayout>
                                                 </Grid>
-                                            </Frame>
+                                            </Border>
                                         </Grid>
                                     </DataTemplate>
                                 </CarouselView.ItemTemplate>
@@ -108,11 +119,11 @@
                         </Grid>
 
                         <!-- Search Bar -->
-                        <Frame Margin="15,5" 
-                               Padding="10,0" 
-                               CornerRadius="10" 
-                               BorderColor="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray900}}"
-                               BackgroundColor="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
+                        <Border Margin="15,5" 
+                                Padding="10,0" 
+                                StrokeShape="RoundRectangle 10" 
+                                Stroke="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray900}}"
+                                Background="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray900}}">
                             <Grid ColumnDefinitions="Auto, *">
                                 <Label Text="🔍" VerticalOptions="Center" Margin="5,0"/>
                                 <Entry x:Name="SearchEntry" 
@@ -124,7 +135,7 @@
                                        VerticalOptions="Center"
                                        HeightRequest="40"/>
                             </Grid>
-                        </Frame>
+                        </Border>
 
                         <!-- Category Filter Chips -->
                         <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="0,5">
@@ -151,65 +162,66 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:RSSItem">
                         <Grid Padding="15,8">
-                            <Frame CornerRadius="10" 
-                                   Padding="10" 
-                                   BorderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" 
-                                   BackgroundColor="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"
-                                   HasShadow="True">
+                            <Border StrokeShape="RoundRectangle 10" 
+                                     Padding="10" 
+                                     Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray900}}" 
+                                     Background="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}">
+                                 <Border.Shadow>
+                                     <Shadow Brush="Black" Offset="0,2" Radius="4" Opacity="0.1" />
+                                 </Border.Shadow>
                                 
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="OnFeedItemTapped" CommandParameter="{Binding .}"/>
-                                </Grid.GestureRecognizers>
-
-                                <Grid ColumnDefinitions="100, *" ColumnSpacing="12">
-                                    
-                                    <!-- Left Column: Thumbnail Image -->
-                                    <Frame Grid.Column="0" 
-                                           CornerRadius="8" 
-                                           Padding="0" 
-                                           BorderColor="Transparent" 
-                                           HeightRequest="85"
-                                           WidthRequest="100"
-                                           IsClippedToBounds="True">
-                                        <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
-                                    </Frame>
-
-                                    <!-- Right Column: Texts -->
-                                    <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto" RowSpacing="2">
-                                        
-                                        <!-- Title -->
-                                        <Label Grid.Row="0" 
-                                               Text="{Binding Title}" 
-                                               FontSize="14" 
-                                               FontAttributes="Bold" 
-                                               TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
-                                               LineBreakMode="TailTruncation"
-                                               MaxLines="2"/>
-                                        
-                                        <!-- Brief Description -->
-                                        <Label Grid.Row="1" 
-                                               Text="{Binding Description}" 
-                                               FontSize="11" 
-                                               TextColor="{StaticResource Gray500}" 
-                                               LineBreakMode="TailTruncation"
-                                               MaxLines="2"/>
-
-                                        <!-- Footer details -->
-                                        <Grid Grid.Row="2" ColumnDefinitions="Auto, *">
-                                            <Label Grid.Column="0" 
-                                                   Text="{Binding Category}" 
-                                                   FontSize="9" 
-                                                   FontAttributes="Bold" 
-                                                   TextColor="{StaticResource Primary}"/>
-                                            <Label Grid.Column="1" 
-                                                   Text="{Binding PubDate}" 
-                                                   FontSize="9" 
-                                                   TextColor="{StaticResource Gray500}" 
-                                                   HorizontalOptions="End"/>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Frame>
+                                 <Grid.GestureRecognizers>
+                                     <TapGestureRecognizer Tapped="OnFeedItemTapped" CommandParameter="{Binding .}"/>
+                                 </Grid.GestureRecognizers>
+ 
+                                 <Grid ColumnDefinitions="100, *" ColumnSpacing="12">
+                                     
+                                     <!-- Left Column: Thumbnail Image -->
+                                     <Border Grid.Column="0" 
+                                             StrokeShape="RoundRectangle 8" 
+                                             Padding="0" 
+                                             StrokeThickness="0" 
+                                             HeightRequest="85"
+                                             WidthRequest="100">
+                                         <Image Source="{Binding ImageUrl}" Aspect="AspectFill"/>
+                                     </Border>
+ 
+                                     <!-- Right Column: Texts -->
+                                     <Grid Grid.Column="1" RowDefinitions="Auto, *, Auto" RowSpacing="2">
+                                         
+                                         <!-- Title -->
+                                         <Label Grid.Row="0" 
+                                                Text="{Binding Title}" 
+                                                FontSize="14" 
+                                                FontAttributes="Bold" 
+                                                TextColor="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2"/>
+                                         
+                                         <!-- Brief Description -->
+                                         <Label Grid.Row="1" 
+                                                Text="{Binding Description}" 
+                                                FontSize="11" 
+                                                TextColor="{StaticResource Gray500}" 
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2"/>
+ 
+                                         <!-- Footer details -->
+                                         <Grid Grid.Row="2" ColumnDefinitions="Auto, *">
+                                             <Label Grid.Column="0" 
+                                                    Text="{Binding Category}" 
+                                                    FontSize="9" 
+                                                    FontAttributes="Bold" 
+                                                    TextColor="{StaticResource Primary}"/>
+                                             <Label Grid.Column="1" 
+                                                    Text="{Binding PubDate}" 
+                                                    FontSize="9" 
+                                                    TextColor="{StaticResource Gray500}" 
+                                                    HorizontalOptions="End"/>
+                                         </Grid>
+                                     </Grid>
+                                 </Grid>
+                             </Border>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -224,5 +236,11 @@
                 </CollectionView.EmptyView>
             </CollectionView>
         </RefreshView>
+
+        <!-- AdMob Banner Ad -->
+        <admob:BannerAd Grid.Row="2"
+                        AdUnitId="{x:Static local:AdConfig.BannerAdUnitId}"
+                        HeightRequest="50"
+                        HorizontalOptions="Center" />
     </Grid>
 </ContentPage>
